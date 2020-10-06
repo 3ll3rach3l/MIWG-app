@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { login, loginDemo } from '../store/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
-// import './LoginPage.css'
+import './auth.css'
 
 
 
@@ -27,26 +27,22 @@ function LoginPage() {
     if (currentUserToken) return <Redirect to="/"/>;
 
     return (
-        <div className="login-container">
+        <div className="auth-container">
+            <form className="auth-form" onSubmit={handleSubmit}>
             <div className="errors-container">
-                <ul className="errors" id="errors"></ul>
+                <ul className="errors" id="login-errors"></ul>
             </div>
-            <form id="login-form" onSubmit={handleSubmit}>
                 <div className="signUpLabel">
-                 <label>Email
-                     <input type="text" className="signup" onChange={(e) => setEmail(e.target.value)}/>
-                 </label>
+                    <input type="text" className="signup" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="signUpLabel">
-                    <label>Password
-                        <input type="password" className="signup" onChange={(e) => setPassword(e.target.value)} />
-                    </label>
+                    <input type="password" className="signup" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className="buttonDiv">
-                <button type="submit" onClick={handleSubmit}>Log in</button>
+                <button className="authButton" type="submit" onClick={handleSubmit}>Log in</button>
                 </div>
                 <div className="buttonDiv">
-                <button type="submit" onClick={handleDemoSubmit}>
+                <button className="authButton" type="submit" onClick={handleDemoSubmit}>
                     Log in as demo user
                  </button>
                 </div>
