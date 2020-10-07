@@ -8,22 +8,23 @@ import UserList from './components/UsersList';
 
 
 function App() {
-//     const [loading, setLoading] = useState(true);
-//     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
-//     useEffect(() => {
-//       const loadUser = async () => {
-//         const res = await fetch("/api/session");
-//         if (res.ok) {
-//           res.data = await res.json();
-//           dispatch(setUser(res.data));
-//         }
-//         setLoading(false);
-//       };
-//       loadUser();
-//     }, [dispatch]);
+    useEffect(() => {
+      const loadUser = async () => {
+        //backend route to get current user
+        const res = await fetch("/api/session/current");
+        if (res.ok) {
+          res.data = await res.json();
+          dispatch(setUser(res.data));
+        }
+        setLoading(false);
+      };
+      loadUser();
+    }, [dispatch]);
 
-//     if (loading) return null;
+    if (loading) return null;
   console.log("____Rendering app_____")
   return (
     <BrowserRouter>

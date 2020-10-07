@@ -66,7 +66,8 @@ export const logout = () => {
     return async dispatch => {
         const res = await fetch('/api/session', {
             method: 'delete',
-            headers: {"XSRF-TOKEN": Cookies.get("XSRF-TOKEN")},
+            // headers: {"XSRF-TOKEN": Cookies.get("XSRF-TOKEN")},
+            headers: { },
         })
         if (res.ok) {
             dispatch(logoutUser());

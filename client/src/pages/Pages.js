@@ -4,7 +4,7 @@ import history from '../store/history'
 
 import LoginPage from './LoginPage'
 import SignupPage from './SignupPage'
-import LogoutButton from '../components/LogoutButton'
+import TempHome from './TempHome'
 
 
 export default function Pages() {
@@ -13,12 +13,7 @@ export default function Pages() {
         <Switch>
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/">
-            <h1>My Home Page</h1>
-            <LogoutButton/>
-          </Route>
-          {/* <Route path="/signup" component={SignUpPage} />
-                <Route exact path="/" component={HomePage} /> */}
+          <Route path="/" component={TempHome}/>
         </Switch>
       </Router>
     );
