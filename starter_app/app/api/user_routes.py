@@ -13,6 +13,12 @@ def set_password(password):
     return hashed_password
 
 
+@user_routes.route('/')
+def index():
+  response = User.query.all()
+  return {"users": [user.to_dict() for user in response]}
+
+
 @user_routes.route('/signup', methods=['POST'])
 def signup_user():
   data = request.get_json()
