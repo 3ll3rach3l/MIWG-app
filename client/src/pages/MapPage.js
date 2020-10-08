@@ -1,13 +1,10 @@
 import React from 'react'
 import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from 'use-places-autocomplete';
-import {Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption} from '@reach/combobox'
 
 import mapStyles from './mapStyles'
+import Search from '../components/Search'
 import './mapPage.css'
+
 
 //can go in it's own component
 const libraries = ['places'];
@@ -27,7 +24,7 @@ const options = {
   disableDefaultUI: true,
 }
 
-function MapPage(){
+export default function MapPage(){
   //hooks
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
@@ -55,12 +52,20 @@ function MapPage(){
     mapRef.current = map;
   }, []);
 
+  const panTo = React.useCallback(({lat, lng}) => { //this is for panning to the city input from search
+    mapRef.current.panTo({lat, lng});
+    mapRef.current.setZoom(14);
+  }, []);
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
   return (
     <div className="googleMap" style={{ width: "100vw", height: "100vh" }}>
       <h1>No more stolen sisters</h1>
+
+      <Search panTo={panTo}/>
+
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={4.5}
@@ -94,8 +99,7 @@ function MapPage(){
             <div>
               <h2>This is Dope</h2>
               <p>
-                InfoWindow can only take one div, and we can put any html inside
-                of it that we want
+                Deciding how I want to utilize this...
               </p>
             </div>
           </InfoWindow>
@@ -105,4 +109,3 @@ function MapPage(){
   );
 }
 
-export default MapPage;
