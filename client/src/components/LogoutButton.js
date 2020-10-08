@@ -12,7 +12,7 @@ function LogoutButton(props) {
     //debugger
     if (res.ok) Cookies.remove("token");
 
-    console.log("this is res in logoutbutton.js", res)
+    //console.log("this is res in logoutbutton.js", res)
   };
 
   return (
