@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import User
+from app.models import User, Map
 # from passlib.hash import sha256_crypt
 
 from app.api.user_routes import set_password
@@ -28,5 +28,22 @@ with app.app_context():
   db.session.add(soonmi)
   db.session.add(alissa)
   db.session.add(lauren)
+
+  seattle = Map(city = 'Seattle', stateAbbr = 'WA')
+  ellensburg = Map(city = 'Ellensburg', stateAbbr='WA')
+  hilo = Map(city='Hilo', stateAbbr='HI')
+  weslaco = Map(city='Weslaco', stateAbbr='TX')
+  sanFran = Map(city='San Francisco', stateAbbr='CA')
+  losAngeles = Map(city='Los Angeles', stateAbbr='CA')
+  sanDiego = Map(city='San Diego', stateAbbr='CA')
+
+  db.session.add(seattle)
+  db.session.add(ellensburg)
+  db.session.add(hilo)
+  db.session.add(weslaco)
+  db.session.add(sanFran)
+  db.session.add(losAngeles)
+  db.session.add(sanDiego)
+
 
   db.session.commit()
