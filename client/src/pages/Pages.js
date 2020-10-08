@@ -5,12 +5,14 @@ import history from '../store/history'
 import LoginPage from './LoginPage'
 import SignupPage from './SignupPage'
 import TempHome from './TempHome'
+import MapPage from './MapPage'
 
 
 export default function Pages() {
     return (
       <Router history={history}>
         <Switch>
+          <Route path="/map" component={MapPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/" component={TempHome}/>
