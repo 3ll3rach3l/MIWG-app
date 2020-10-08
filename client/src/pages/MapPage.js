@@ -87,7 +87,10 @@ function MapPage(){
         ))}
 
         {selected ? (
-          <InfoWindow position={{ lat: selected.lat, lng: selected.lng }}>
+          <InfoWindow 
+          position={{ lat: selected.lat, lng: selected.lng }}
+          onCloseClick={()=>{setSelected(null)}}
+          >
             <div>
               <h2>This is Dope</h2>
               <p>
