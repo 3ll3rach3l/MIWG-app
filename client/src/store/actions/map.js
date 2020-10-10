@@ -44,6 +44,8 @@ export const fetchCity = (id)  =>{
         const data = await res.json();
         dispatch(getCity(data.city))
 
+        return data
+
     }
 }
 
