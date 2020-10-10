@@ -10,7 +10,7 @@ from app.api.user_routes import set_password
 hashed = set_password('password')
 
 with app.app_context():
-  # db.drop_all()
+  db.drop_all()
   db.create_all()
 
   ian = User(username = 'Ian', email = 'ian@aa.io', hashed_password=hashed, admin=False)
@@ -29,21 +29,26 @@ with app.app_context():
   db.session.add(alissa)
   db.session.add(lauren)
 
-  seattle = Map(city = 'Seattle', stateAbbr = 'WA')
-  ellensburg = Map(city = 'Ellensburg', stateAbbr='WA')
-  hilo = Map(city='Hilo', stateAbbr='HI')
-  weslaco = Map(city='Weslaco', stateAbbr='TX')
-  sanFran = Map(city='San Francisco', stateAbbr='CA')
-  losAngeles = Map(city='Los Angeles', stateAbbr='CA')
-  sanDiego = Map(city='San Diego', stateAbbr='CA')
+  seattle = Map(city='Seattle', state='WA', lat=47.606209, lng=-122.332069)
+  tacoma = Map(city='Tacoma', state='WA',
+               lat=47.252876, lng=-122.444290)
+  hilo = Map(city='Hilo', state='HI', lat=19.725260, lng=-155.089096)
+  weslaco = Map(city='Weslaco', state='TX', lat=26.159519, lng=-97.990837)
+  sanFran = Map(city='San Francisco', state='CA',
+                lat=37.774929, lng=-122.419418)
+  losAngeles = Map(city='Los Angeles', state='CA',
+                   lat=34.052235, lng=-118.243683)
+  sanDiego = Map(city='San Diego', state='CA', lat=32.715736, lng=-117.161087)
+  okCity = Map(city="Oklahoma City", state='OK', lat=35.468491, lng=-97.521263)
 
   db.session.add(seattle)
-  db.session.add(ellensburg)
+  db.session.add(tacoma)
   db.session.add(hilo)
   db.session.add(weslaco)
   db.session.add(sanFran)
   db.session.add(losAngeles)
   db.session.add(sanDiego)
+  db.session.add(okCity)
 
 
   db.session.commit()

@@ -5,7 +5,7 @@ from app.models import db, Map
 map_routes = Blueprint('maps', __name__)
 
 @map_routes.route('')
-def index():
+def showCities():
     response = Map.query.all()
     return {'cities': [city.to_dict() for city in response]}
 
@@ -14,11 +14,15 @@ def add_city():
     data = request.get_json()
 
     city = data['city']
-    stateAbbr = data['stateAbbr']
+    state = data['state']
+    lat = data['lat']
+    lng = data['lng']
 
     newCity = Map(
         city=city,
-        stateAbbr=stateAbbr
+        state=state,
+        lat=lat,
+        lng=lng
     )
 
     db.session.add(newCity)
