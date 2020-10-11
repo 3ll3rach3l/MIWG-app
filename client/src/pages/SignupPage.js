@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { signup } from "../store/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+import authButton from '../components/AuthButton';
+
 import './auth.css'
+import AuthButton from "../components/AuthButton";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -20,55 +23,57 @@ function SignupPage() {
   if (currentUserId) return <Redirect to="/" />;
 
   return (
-    <> 
-    <div className="auth-container">
+    <>
+      <div className="auth-container">
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="errors-container">
             <ul className="errors" id="sign-up-errors"></ul>
           </div>
           <div className="buttonDiv">
             <div className="signUpLabel">
-                <input type="text"
+              <input
+                type="text"
                 className="signup"
                 placeholder="Username"
                 onChange={(e) => setUsername(e.target.value)}
-                />
+              />
             </div>
           </div>
           <div className="buttonDiv">
             <div className="signUpLabel">
-                <input type="text"
+              <input
+                type="text"
                 className="signup"
                 placeholder="Email"
-                id="outlined-basic"
                 onChange={(e) => setEmail(e.target.value)}
-                />
+              />
             </div>
           </div>
           <div className="buttonDiv">
             <div className="signUpLabel">
-                <input type="password"
+              <input
+                type="password"
                 className="signup"
                 placeholder="Password"
-                id="outlined-basic"
                 onChange={(e) => setPassword(e.target.value)}
-                />
+              />
             </div>
           </div>
           <div className="buttonDiv">
-            <button
+            <AuthButton onClick={handleSubmit}>Sign Up</AuthButton>
+            {/* <button
               className="authButton"
               type="submit"
               onClick={handleSubmit}
-            >Sign Up</button>
+            >Sign Up</button> */}
             <div className="signUpOption">
-                <span>
-                    Already a member? <Link to="/login">Log In</Link>
-                </span>
+              <span>
+                Already a member? <Link to="/login">Log In</Link>
+              </span>
             </div>
           </div>
-        </form>   
-    </div>
+        </form>
+      </div>
     </>
   );
 }
