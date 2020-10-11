@@ -2,12 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from '../store/actions/auth'
 import Cookies from "js-cookie";
+import AuthButton from './AuthButton'
 
-function LogoutButton(props) {
+function LogoutButton() {
   const dispatch = useDispatch();
   
 
-  const handleClick = async (e) => {
+  const handleClick = async () => {
     const res = await dispatch(logout());
     //debugger
     if (res.ok) Cookies.remove("token");
@@ -17,11 +18,12 @@ function LogoutButton(props) {
 
   return (
     <div id="logout-button">
-      <button
+      <AuthButton onClick={handleClick}> Log Out</AuthButton>
+      {/* <button
         onClick={handleClick}
         className="logout-button"
         type="click"
-      > Log out </button>
+      > Log out </button> */}
     </div>
   );
 }

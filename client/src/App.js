@@ -4,7 +4,7 @@ import Pages from './pages/Pages'
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/actions/auth";
 
-import UserList from './components/UsersList';
+import { CssBaseline } from '@material-ui/core';
 
 
 function App() {
@@ -27,24 +27,12 @@ function App() {
     if (loading) return null;
   console.log("____Rendering app_____")
   return (
-    <BrowserRouter>
-        <Pages />
-        {/* <nav>
-            <ul>
-                <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-            </ul>
-        </nav>
-        <Switch>
-            <Route path="/users">
-                <UserList />
-            </Route>
-
-            <Route path="/">
-                <h1>My Home Page</h1>
-            </Route>
-        </Switch> */}
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+      <CssBaseline/>
+          <Pages />
+      </BrowserRouter>
+    </>
   );
 }
 
