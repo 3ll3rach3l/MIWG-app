@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { login, loginDemo } from '../store/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
+
 import AuthButton from '../components/AuthButton';
+
 
 import './auth.css'
 
@@ -36,6 +38,7 @@ function LoginPage() {
             <ul className="errors" id="login-errors"></ul>
           </div>
           <div className="signUpLabel">
+
             <input
               type="text"
               className="signup"

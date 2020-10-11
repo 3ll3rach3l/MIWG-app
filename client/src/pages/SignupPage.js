@@ -61,11 +61,6 @@ function SignupPage() {
           </div>
           <div className="buttonDiv">
             <AuthButton onClick={handleSubmit}>Sign Up</AuthButton>
-            {/* <button
-              className="authButton"
-              type="submit"
-              onClick={handleSubmit}
-            >Sign Up</button> */}
             <div className="signUpOption">
               <span>
                 Already a member? <Link to="/login">Log In</Link>

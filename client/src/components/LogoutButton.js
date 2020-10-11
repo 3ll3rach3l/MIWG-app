@@ -8,7 +8,7 @@ function LogoutButton() {
   const dispatch = useDispatch();
   
 
-  const handleClick = async (e) => {
+  const handleClick = async () => {
     const res = await dispatch(logout());
     //debugger
     if (res.ok) Cookies.remove("token");
