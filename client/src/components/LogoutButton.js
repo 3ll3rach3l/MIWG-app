@@ -2,10 +2,25 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from '../store/actions/auth'
 import Cookies from "js-cookie";
-import AuthButton from './AuthButton'
+
+import { Button, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  logoutButton: {
+    marginRight: theme.spacing(10),
+    marginLeft: theme.spacing(20)
+   
+  },
+  
+  
+}));
 
 function LogoutButton() {
   const dispatch = useDispatch();
+  const classes = useStyles()
   
 
   const handleClick = async () => {
@@ -18,7 +33,7 @@ function LogoutButton() {
 
   return (
     <div id="logout-button">
-      <AuthButton onClick={handleClick}> Log Out</AuthButton>
+      <Button variant="contained" className={classes.logoutButton}onClick={handleClick}> Log Out</Button>
       {/* <button
         onClick={handleClick}
         className="logout-button"

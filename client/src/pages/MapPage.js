@@ -6,6 +6,7 @@ import {useQuery, useMutation, queryCache} from 'react-query'
 
 import mapStyles from './mapStyles'
 import Search from '../components/Search'
+import NavBar from '../components/NavBar'
 // import Markers from '../components/Markers';
 import './mapPage.css'
 
@@ -86,9 +87,10 @@ export default function MapPage(){
   console.log(cities)
   return (
     <div className="googleMap" style={{ width: "100vw", height: "100vh" }}>
-      <h1>No more stolen sisters</h1>
+      {/* <h1>No more stolen sisters</h1>
 
-      <Search panTo={panTo}/>
+      <Search panTo={panTo}/> */}
+      <NavBar />
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}

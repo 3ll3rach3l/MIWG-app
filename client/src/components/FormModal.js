@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import MissingForm from './MissingForm';
 import { makeStyles, Paper } from "@material-ui/core";
 
+import './formModal.css'
+
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     margin: theme.spacing(5),
