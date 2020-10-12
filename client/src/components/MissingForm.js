@@ -24,11 +24,11 @@ export default function MissingForm(){
    const validate = (fieldValues = values) =>{
         let temp = {...errors}
         if ('fullName' in fieldValues) 
-            temp.fullName = fieldValues.fullName ? "" : "This field is required."
+            temp.fullName = fieldValues.fullName ? "" : "Please enter full name."
         if ("age" in fieldValues)
           temp.age = fieldValues.age ? "" : "Please enter an age.";
         if ("tribalAffiliation" in fieldValues)
-          temp.tribalAffiliation = fieldValues.tribalAffiliation > 9 ? "" : "This field is required.";
+          temp.tribalAffiliation = fieldValues.tribalAffiliation ? "" : "Please enter tribal affiliation.";
         if ("location" in fieldValues)
           temp.location = fieldValues.location ? "" : "Please enter a location";
         setErrors({
