@@ -1,0 +1,58 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MissingForm from './MissingForm';
+import { makeStyles, Paper } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  pageContent: {
+    margin: theme.spacing(5),
+    padding: theme.spacing(3),
+  },
+}));
+
+//Portals allow React components to render in another part of the DOM that is outside of their parent component.
+const FormModal = ({isShowing, hide}) => {
+
+  const classes = useStyles()
+
+  return (
+    <div className="modal">
+      {isShowing
+        ? ReactDOM.createPortal(
+            <>
+              <div className="modal-overlay" />
+              <div
+                className="modal-wrapper"
+                aria-modal
+                aria-hidden
+                tabIndex={-1}
+                role="dialog"
+              >
+                <div className="modal">
+                  <Paper className={classes.pageContent}>
+                    <MissingForm />
+                  </Paper>
+                  <div className="modal-header">
+                    <button
+                      type="button"
+                      className="modal-close-button"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      onClick={hide}
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {/* <p>
+               Hello, I'm a modal.
+             </p> */}
+                </div>
+              </div>
+            </>,
+            document.body
+          )
+        : null}
+    </div>
+  );
+}
+export default FormModal

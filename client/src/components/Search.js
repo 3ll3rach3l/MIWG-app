@@ -36,7 +36,7 @@ export default function Search({panTo}){
                console.log(results[0])
                const {lat, lng} = await getLatLng(results[0]); // this converts results from string to lat, lng
                 console.log("this is lat long", lat, lng)
-               panTo({lat, lng}); //error: panTo is not a function NEED TO FIX
+               panTo({lat, lng}); 
 
            } catch(error){
                console.error("error!")
