@@ -21,4 +21,4 @@ const FormModal = ({isShowing, hide}) => isShowing ? ReactDOM.createPortal(
   </React.Fragment>, document.body
 ) : null;
 
-export default FormModal;
+export default FormModal
