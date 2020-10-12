@@ -82,7 +82,7 @@ export default function MissingForm(){
               error={errors.tribalAffiliation}
             />
             <Controls.Input //use search component here
-              label="Location"
+              label="City Last Seen"
               name="location"
               value={values.location}
               onChange={handleInputChange}

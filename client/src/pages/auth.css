@@ -1,6 +1,7 @@
 /* #root{
   position: relative;
 } */
+
 .auth-container{
     border: 1px solid #d0d0c8;
     background-color: white;
@@ -22,7 +23,7 @@ form {
   margin-top: 0em;
 }
 
-input[type=text], input[type=password] {
+.signup{
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -30,6 +31,7 @@ input[type=text], input[type=password] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+
 
 button {
   background-color: red;
@@ -42,9 +44,9 @@ button {
  
 }
 
-button:hover {
+/* button:hover {
   opacity: 0.8;
-}
+} */
 
 .signUpOption{
     text-align: center;
