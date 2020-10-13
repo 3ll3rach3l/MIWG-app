@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { logout } from '../store/actions/auth'
 import Cookies from "js-cookie";
 
-import { Button, makeStyles } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +36,6 @@ function LogoutButton() {
   return (
     <div id="logout-button">
       <Button variant="contained" className={classes.logoutButton}onClick={handleClick}> Log Out</Button>
-      {/* <button
-        onClick={handleClick}
-        className="logout-button"
-        type="click"
-      > Log out </button> */}
     </div>
   );
 }

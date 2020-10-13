@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MissingForm from './MissingForm';
-import { makeStyles, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import './formModal.css'
 
