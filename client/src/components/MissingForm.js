@@ -16,6 +16,7 @@ const initialValues ={
     tribalAffiliation: '',
     location: '',
     dateLastSeen: new Date(),
+    details: '',
     status: 'missing',
     // isPermanent: false,
 }
@@ -95,6 +96,12 @@ export default function MissingForm(){
                 label="Date last seen"
                 value={values.dateLastSeen}
                 onChange={handleInputChange}
+            />
+            <Controls.Details 
+              name="details"
+              label="Additional details"
+              value={values.details}
+              onChange={handleInputChange}
             />
             <Controls.RadioGroup
               name="status"
