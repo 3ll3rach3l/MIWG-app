@@ -44,7 +44,7 @@ export default function MapPage(){
   useEffect(()=>{
     async function getCities(){
      const whatever = await dispatch(fetchCities())
-     console.log(whatever)
+     console.log("this is whatever", whatever)
      setMarkers(whatever.cities)
     }
     getCities()
