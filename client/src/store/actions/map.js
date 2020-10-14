@@ -31,8 +31,9 @@ export const fetchCities = () =>{
     return async (dispatch) => {
         const res = await fetch(`/api/map`);
         const data = await res.json()
-
+        
         dispatch(getCities(data.cities))
+        // console.log("cities data", data)
         return data
     }
 
@@ -51,7 +52,7 @@ export const fetchCity = (id)  =>{
 
 export const newCity = (city, state, lat, lng) =>{
     return async (dispatch) =>{
-        const res = await fetch("/api/map/missing", {
+        const res = await fetch("/api/map/new", {
           method: "post",
           headers: {
             "Content-Type": "application/json",

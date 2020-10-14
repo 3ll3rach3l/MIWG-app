@@ -84,7 +84,7 @@ export default function MapPage(){
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
   if(!cities) return "loading cities"
-  console.log(cities)
+  // console.log("cities--array of objs", cities)
   return (
     <div className="googleMap" style={{ width: "100vw", height: "100vh" }}>
       {/* <h1>No more stolen sisters</h1>
