@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from '../store/actions/auth'
 import Cookies from "js-cookie";
+import history from '../store/history';
 
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
+
+
 function LogoutButton() {
   const dispatch = useDispatch();
   const classes = useStyles()
@@ -28,7 +31,11 @@ function LogoutButton() {
   const handleClick = async () => {
     const res = await dispatch(logout());
     //debugger
-    if (res.ok) Cookies.remove("token");
+    if (res.ok){
+      Cookies.remove("token");
+      history.push('/login')
+      
+    } 
 
     //console.log("this is res in logoutbutton.js", res)
   };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, TextField} from '@material-ui/core';
 import { useForm, Form } from './useForm';
@@ -17,6 +18,7 @@ export default function MissingForm(){
   const dispatch = useDispatch()
   const userId = useSelector(state => state.auth.user.id);
   // console.log("userId", userId)
+  // if (!userId) return <Redirect to='/login'></Redirect>
   
   const validate = (fieldValues = values) =>{
     let temp = {...errors}
