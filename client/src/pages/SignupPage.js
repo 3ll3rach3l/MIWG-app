@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { signup } from "../store/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import authButton from '../components/AuthButton';
 
-import './auth.css'
+
+import "./auth.css";
 import AuthButton from "../components/AuthButton";
 
 function SignupPage() {
@@ -13,7 +13,6 @@ function SignupPage() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const currentUserId = useSelector((state) => state.auth.id);
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
