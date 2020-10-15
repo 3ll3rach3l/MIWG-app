@@ -47,6 +47,8 @@ def inject_csrf_token(response):
 @app.route('/<path:path>')
 def react_root(path):
     print("path", path)
+    if path == 'red-hang.svg':
+        return app.send_static_file('red-hand.svg')
     if path == 'favicon.ico':
         print("favicon route_____")
         return app.send_static_file('favicon.ico')
