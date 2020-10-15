@@ -29,7 +29,7 @@ function LoginPage() {
         console.log("demo!")
     }
 
-    if (currentUserToken) return <Redirect to="/"/>;
+    if (currentUserToken) return <Redirect to="/map"/>;
 
     return (
       <div className="auth-container">

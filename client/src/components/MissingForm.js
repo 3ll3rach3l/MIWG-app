@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid, TextField} from '@material-ui/core';
 import { useForm, Form } from './useForm';
 import Controls from '../components/controls/Controls';
+import { newMissing } from '../store/actions/missing';
+
 
 const statusItems = [
     {id: 'missing', title: 'Missing'},
@@ -9,35 +13,43 @@ const statusItems = [
     {id: 'deceased', title: 'Deceased'},
 ]
 
-const initialValues ={
-    id: 0,
-    fullName: '',
-    age: '',
-    tribalAffiliation: '',
-    location: '',
-    dateLastSeen: new Date(),
-    status: 'missing',
-    // isPermanent: false,
-}
 
 export default function MissingForm(){
-   const validate = (fieldValues = values) =>{
-        let temp = {...errors}
-        if ('fullName' in fieldValues) 
-            temp.fullName = fieldValues.fullName ? "" : "Please enter full name."
-        if ("age" in fieldValues)
-          temp.age = fieldValues.age ? "" : "Please enter an age.";
-        if ("tribalAffiliation" in fieldValues)
-          temp.tribalAffiliation = fieldValues.tribalAffiliation ? "" : "Please enter tribal affiliation.";
-        if ("location" in fieldValues)
-          temp.location = fieldValues.location ? "" : "Please enter a location";
-        setErrors({
-          ...temp,
-        });
-
-        if (fieldValues == values)
-          return Object.values(temp).every((x) => x == "");
-    }
+  const dispatch = useDispatch()
+  const userId = useSelector(state => state.auth.user.id);
+  // console.log("userId", userId)
+  // if (!userId) return <Redirect to='/login'></Redirect>
+  
+  const validate = (fieldValues = values) =>{
+    let temp = {...errors}
+    if ('fullName' in fieldValues) 
+    temp.fullName = fieldValues.fullName ? "" : "Please enter full name."
+    if ("age" in fieldValues)
+    temp.age = fieldValues.age ? "" : "Please enter an age.";
+    if ("tribalAffiliation" in fieldValues)
+    temp.tribalAffiliation = fieldValues.tribalAffiliation ? "" : "Please enter tribal affiliation.";
+    if ("location" in fieldValues)
+    temp.location = fieldValues.location ? "" : "Please enter a location";
+    setErrors({
+      ...temp,
+    });
+    
+    if (fieldValues === values)
+    return Object.values(temp).every((x) => x === "");
+  }
+  
+  const initialValues ={
+      id: 0,
+      fullName: '',
+      age: '',
+      tribalAffiliation: '',
+      location: '',
+      dateLastSeen: new Date(),
+      details: '',
+      status: 'missing',
+      userId: userId
+      // isPermanent: false,
+  }
 
     const {
         values,
@@ -51,8 +63,10 @@ export default function MissingForm(){
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()){
-          console.log("I am submitted") //will need to dispatch to POST
-          resetForm()
+        console.log("this is before dispatch", values)
+        dispatch(newMissing(values))
+        console.log("these are the values", values)
+        resetForm()
       }
   }
 
@@ -95,6 +109,12 @@ export default function MissingForm(){
                 label="Date last seen"
                 value={values.dateLastSeen}
                 onChange={handleInputChange}
+            />
+            <Controls.Details 
+              name="details"
+              label="Additional details"
+              value={values.details}
+              onChange={handleInputChange}
             />
             <Controls.RadioGroup
               name="status"

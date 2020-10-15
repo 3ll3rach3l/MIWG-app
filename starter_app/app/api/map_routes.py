@@ -9,7 +9,7 @@ def showCities():
     response = Map.query.all()
     return {'cities': [city.to_dict() for city in response]}
 
-@map_routes.route('/missing', methods=['POST'])
+@map_routes.route('/new', methods=['POST'])
 def add_city():
     data = request.get_json()
 

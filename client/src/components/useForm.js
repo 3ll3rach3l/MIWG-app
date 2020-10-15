@@ -13,16 +13,13 @@ export function useForm(initialValues, validateOnChange = false, validate){
         [name]: value,
       });
       if(validateOnChange) validate({[name]: value})
+     
     };
 
     const resetForm = () =>{
         setValues(initialValues);
         setErrors({})
     }
-
-
-
-
 
     return{
         values,
