@@ -10,14 +10,21 @@ function HomePage() {
     if (!isLoggedIn) return <Redirect to='/login'></Redirect>
 
     return (
+        <>
         <div>
             <h1>In various tribes, red is known to be the only color spirits see.
             It is hoped that by wearing red, we can call back the missing spirits
                 of our women and children so we can lay them to rest.</h1>
+        </div>
+        <div>
             <Link to="/map">Map</Link>
+
+        </div>
+        <div>
             <LogoutButton>Log Out</LogoutButton>
 
         </div>
+        </>
 
 
     )
