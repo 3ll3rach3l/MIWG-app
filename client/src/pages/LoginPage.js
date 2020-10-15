@@ -1,75 +1,147 @@
 import React, { useState } from 'react';
 import { login, loginDemo } from '../store/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, } from "react-router-dom";
 
-import AuthButton from '../components/AuthButton';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+
+import TextField from '@material-ui/core/TextField';
+
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
 
-import './auth.css'
 
-
-
-function LoginPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const currentUserToken = useSelector(state => state.auth.id);
-    const dispatch = useDispatch();
-    
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        dispatch(login(email, password));
-       
-    }
-
-    const handleDemoSubmit = e => {
-        e.preventDefault();
-        dispatch(loginDemo());
-        console.log("demo!")
-    }
-
-    if (currentUserToken) return <Redirect to="/map"/>;
-
-    return (
-      <div className="auth-container">
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <div className="errors-container">
-            <ul className="errors" id="login-errors"></ul>
-          </div>
-          <div className="signUpLabel">
-
-            <input
-              type="text"
-              className="signup"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="signUpLabel">
-            <input
-              type="password"
-              className="signup"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="buttonDiv">
-            {/* <button className="authButton" type="submit" onClick={handleSubmit}>Log in</button> */}
-            <AuthButton onClick={handleSubmit}> Log In </AuthButton>
-          </div>
-          <div className="buttonDiv">
-            {/* <button className="authButton" type="submit" onClick={handleDemoSubmit}>Log in as demo user</button> */}
-            <AuthButton onClick={handleDemoSubmit}>Demo Log In</AuthButton>
-          </div>
-          <div className="signUpOption">
-            <span>
-              Not a member? <Link to="/signup">Sign up</Link>
-            </span>
-          </div>
-        </form>
-      </div>
-    );
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://github.com/3ll3rach3l/MIWG-app//">
+        Lauren Beard
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
-export default LoginPage;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: 'black'
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function LoginPage() {
+  const classes = useStyles();
+
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const currentUserToken = useSelector(state => state.auth.id);
+  console.log("this is currentUserToken", currentUserToken)
+  const dispatch = useDispatch();
+
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(login(email, password));
+
+  }
+
+  const handleDemoSubmit = e => {
+    e.preventDefault();
+    dispatch(loginDemo());
+    console.log("demo!")
+  }
+
+  if (currentUserToken) return <Redirect to="/" />;
+
+  return (
+
+    <Container component="main" maxWidth="xs">
+
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            onChange={(e) => setEmail(e.target.value)}
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={handleSubmit}
+          >
+            Sign In
+          </Button>
+
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2" onClick={handleDemoSubmit}>
+                Demo Sign In
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+}
