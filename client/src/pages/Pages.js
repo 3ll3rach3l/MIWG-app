@@ -6,12 +6,15 @@ import LoginPage from './LoginPage'
 import SignupPage from './SignupPage'
 import HomePage from './HomePage'
 import MapPage from './MapPage'
+import MissingAll from './MissingAllPage'
+
 
 
 export default function Pages() {
     return (
       <Router history={history}>
         <Switch>
+          <Route path="/missing" component={MissingAll} />
           <Route path="/map" component={MapPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
