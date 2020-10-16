@@ -5,7 +5,7 @@ missing_routes = Blueprint('missings', __name__)
 
 @missing_routes.route('')
 def showMissing():
-    response = Missing.query.all()
+    response = Missing.query.order_by(Missing.dateLastSeen.desc())
     return {'missings': [missing.to_dict() for missing in response]}
 
 

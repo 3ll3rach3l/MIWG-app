@@ -48,7 +48,7 @@ export const fetchOneMissing = (id) => {
     }
 }
 
-export const newMissing = (fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId) => {
+export const newMissing = (fullName, age, tribalAffiliation, location, lat, lng, dateLastSeen, details, status, userId) => {
     // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId };
     // console.log("this is the body", body);
     return async dispatch => {
@@ -58,7 +58,7 @@ export const newMissing = (fullName, age, tribalAffiliation, location, dateLastS
                 "Content-Type": "application/json",
                 "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
             },
-            body: JSON.stringify(fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId),
+            body: JSON.stringify(fullName, age, tribalAffiliation, location, lat, lng, dateLastSeen, details, status, userId),
         });
         
         console.log('res', res)
