@@ -74,7 +74,7 @@ export default function LoginPage() {
   const handleDemoSubmit = e => {
     e.preventDefault();
     dispatch(loginDemo());
-    console.log("demo!")
+    
     
   }
 

@@ -89,11 +89,11 @@ export const newMissing = (
         
         console.log('res', res)
         res.data = await res.json();
-       console.log('this is res.data', res.data.missing)
+       console.log('this is res.data', res.data.newMissing)
        
 
         if(res.ok){
-            dispatch(postMissing(res.data.missings))
+            dispatch(postMissing(res.data.newMissing))
         } 
         // return res;
     }

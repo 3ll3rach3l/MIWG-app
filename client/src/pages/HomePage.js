@@ -6,7 +6,7 @@ import LogoutButton from '../components/LogoutButton';
 
 function HomePage() {
     const isLoggedIn = useSelector(state => !!state.auth.id);
-    console.log("this is isLoggedIn", isLoggedIn)
+    // console.log("this is isLoggedIn", isLoggedIn)
     if (!isLoggedIn) return <Redirect to='/login'></Redirect>
 
     return (
@@ -21,7 +21,7 @@ function HomePage() {
 
         </div>
         <div>
-            <LogoutButton>Log Out</LogoutButton>
+           
 
         </div>
         </>

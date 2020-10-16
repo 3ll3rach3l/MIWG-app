@@ -33,9 +33,9 @@ export default function Search({panTo}){
               clearSuggestions()
            try{
                const results = await getGeocode({address});
-               console.log(results[0])
+              //  console.log(results[0])
                const {lat, lng} = await getLatLng(results[0]); // this converts results from string to lat, lng
-                console.log("this is lat long", lat, lng)
+                // console.log("this is lat long", lat, lng)
                panTo({lat, lng}); 
 
            } catch(error){

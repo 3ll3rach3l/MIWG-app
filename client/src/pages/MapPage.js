@@ -101,7 +101,7 @@ export default function MapPage(){
         zoom={4.5}
         center={center}
         options={options}
-        onClick={onMapClick}
+        // onClick={onMapClick}
         onLoad={onMapLoad}
       >
        
