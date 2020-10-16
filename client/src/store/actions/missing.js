@@ -31,10 +31,10 @@ export const postMissing = (missing) => {
 export const fetchMissing = () => {
     return async (dispatch) => {
         const res = await fetch('/api/missing');
-        const data = await res.json()
+        res.data = await res.json()
 
-        dispatch(getMissing(data.missing))
-        return data
+        if(res.ok) dispatch(getMissing(res.data.missings))
+        return res
     }
 }
 
@@ -48,7 +48,17 @@ export const fetchOneMissing = (id) => {
     }
 }
 
-export const newMissing = (fullName, age, tribalAffiliation, location, lat, lng, dateLastSeen, details, status, userId) => {
+export const newMissing = (
+    fullName, 
+    age, 
+    tribalAffiliation, 
+    location, 
+    lat, 
+    lng, 
+    dateLastSeen, 
+    details, 
+    status, 
+    userId) => {
     // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId };
     // console.log("this is the body", body);
     return async dispatch => {
@@ -58,10 +68,19 @@ export const newMissing = (fullName, age, tribalAffiliation, location, lat, lng,
                 "Content-Type": "application/json",
                 "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
             },
-            body: JSON.stringify(fullName, age, tribalAffiliation, location, lat, lng, dateLastSeen, details, status, userId),
+            body: JSON.stringify(fullName, 
+                age, 
+                tribalAffiliation, 
+                location, 
+                lat, 
+                lng, 
+                dateLastSeen, 
+                details, 
+                status, 
+                userId),
         });
         
-        console.log('res', res)
+        // console.log('res', res)
         res.data = await res.json();
        
 

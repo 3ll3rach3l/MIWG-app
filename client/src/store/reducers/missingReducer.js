@@ -5,7 +5,7 @@ export default function missingReducer(state={}, action ){
         case GET_MISSING:
             return {...state, missing: action.missing};
         case GET_ONE_MISSING:
-            return action.oneMissing;
+            return {...state, oneMissing: action.oneMissing};
         case POST_MISSING:
             return {...state, newMissingPerson: action.missing};
         default:

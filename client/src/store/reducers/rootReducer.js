@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 
-import missingReducer from './mapReducer';
+import missingReducer from './missingReducer';
 
 
 const rootReducer = combineReducers({
