@@ -1,11 +1,32 @@
 import React from 'react';
+import { Grid } from '@material-ui/core'
 import MissingCard from '../components/MissingCard';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  gridContainer: {
+      paddingLeft: '40px',
+      paddingRight: '40px'
+  }
+}));
 
 export default function MissingAll(){
+    const classes = useStyles()
 
     return(
-        <div>
-            <MissingCard/>
-        </div>
+        <Grid container spacing={4} className={classes.gridContainer} justify='center'>
+            <Grid item xs={12} sm={6} md={4}>
+                <MissingCard/>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+                <MissingCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+                <MissingCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+                <MissingCard />
+            </Grid>
+        </Grid>
     )
 }

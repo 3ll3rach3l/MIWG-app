@@ -11,13 +11,12 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        minWidth: 200,
     },
     media: {
         height: 0,
@@ -34,9 +33,12 @@ const useStyles = makeStyles((theme) => ({
         transform: 'rotate(180deg)',
     },
     avatar: {
-        url: '/red-hand.svg',
+        image: '/red-hand.svg',
         backgroundColor: red[500],
     },
+    pos: {
+        marginBotton: 12
+    }
 }));
 
 export default function MissingCard() {
@@ -53,13 +55,13 @@ export default function MissingCard() {
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         R
-          </Avatar>
+                    </Avatar>
                 }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
+                // action={
+                //     <IconButton aria-label="settings">
+                //         <MoreVertIcon />
+                //     </IconButton>
+                // }
                 title="First and Last Name"
                 subheader="Date Last Seen"
             />
@@ -68,13 +70,8 @@ export default function MissingCard() {
                 image="/static/images/cards/paella.jpg"
                 title="Paella dish"
             />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    City Last Seen
-                    Tribal Affiliation
-        </Typography>
-            </CardContent>
             <CardActions disableSpacing>
+                <Typography paragraph>More Info:</Typography>
                
                 <IconButton
                     className={clsx(classes.expand, {
@@ -89,19 +86,13 @@ export default function MissingCard() {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Details:</Typography>
+                    <Typography paragraph>Age</Typography>
+                    <Typography paragraph>Tribal Affiliation</Typography>
+                    <Typography paragraph>City Last Seen</Typography>
+                    <Typography paragraph> Details:</Typography>
                     <Typography paragraph>
-                        Age
-          </Typography>
-                    <Typography paragraph>
-                        Details Expanded
-          </Typography>
-                    <Typography paragraph>
-                        Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                        without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                        medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                        again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                        minutes more. (Discard any mussels that don’t open.)
+                        This project is for demonstration purposes only. Please contact local
+                        authorities if you need to report a missing person.
           </Typography>
                     <Typography>
                         Set aside off of the heat to let rest for 10 minutes, and then serve.
