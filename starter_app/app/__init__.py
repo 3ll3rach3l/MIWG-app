@@ -9,7 +9,7 @@ from flask_login import LoginManager
 from .models import db, User, Missing
 from .api.user_routes import user_routes
 from .api.session_routes import session_routes
-from .api.map_routes import map_routes
+# from .api.map_routes import map_routes
 from.api.missing_routes import missing_routes
 from .config import Config
 
@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(session_routes, url_prefix='/api/session')
-app.register_blueprint(map_routes, url_prefix='/api/map')
+# app.register_blueprint(map_routes, url_prefix='/api/map')
 app.register_blueprint(missing_routes, url_prefix='/api/missing')
 
 
