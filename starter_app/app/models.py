@@ -32,6 +32,8 @@ class Missing(db.Model):
   details= db.Column(db.String(1000), nullable=True)
   status= db.Column(db.String(10), nullable=False)
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  lat = db.Column(db.Float, nullable=False)
+  lng = db.Column(db.Float, nullable=False)
 
   def to_dict(self):
     return{
@@ -43,23 +45,25 @@ class Missing(db.Model):
         "dateLastSeen": self.dateLastSeen,
         "details": self.details,
         "status": self.status,
-        "userId": self.userId
-    }
-
-class Map(db.Model):
-  __tablename__ = 'maps'
-
-  id = db.Column(db.Integer, primary_key=True)
-  city = db.Column(db.String(50), nullable=False)
-  state = db.Column(db.String(3), nullable=False)
-  lat = db.Column(db.Float, nullable=False)
-  lng = db.Column(db.Float, nullable=False)
-
-  def to_dict(self):
-    return{
-        "id": self.id,
-        "city": self.city,
-        "state": self.state,
+        "userId": self.userId,
         "lat": self.lat,
-        "lng": self.lng
+        "lng": self.lng,
     }
+
+# class Map(db.Model):
+#   __tablename__ = 'maps'
+
+#   id = db.Column(db.Integer, primary_key=True)
+#   city = db.Column(db.String(50), nullable=False)
+#   state = db.Column(db.String(3), nullable=False)
+#   lat = db.Column(db.Float, nullable=False)
+#   lng = db.Column(db.Float, nullable=False)
+
+#   def to_dict(self):
+#     return{
+#         "id": self.id,
+#         "city": self.city,
+#         "state": self.state,
+#         "lat": self.lat,
+#         "lng": self.lng
+#     }

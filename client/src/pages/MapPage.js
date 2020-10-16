@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
 import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import { useDispatch, useSelector } from "react-redux";
-import {fetchCities, postCity} from '../store/actions/map';
+import { fetchMissing } from '../store/actions/missing';
 import {useQuery, useMutation, queryCache} from 'react-query'
 
 import mapStyles from './mapStyles'
 import Search from '../components/Search'
 import NavBar from '../components/NavBar'
-// import Markers from '../components/Markers';
+
 import './mapPage.css'
 
 
@@ -33,21 +33,26 @@ const options = {
 
 
 export default function MapPage(){
-  const dispatch = useDispatch()
-
   //hooks
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
   });
+  
+  const dispatch = useDispatch()
+  //state - useState is used when we want React to re-render
+  const missing = useSelector(state => state.missingReducer.missing)
+  const [markers, setMarkers] = React.useState([]);
+  const [selected, setSelected] = React.useState(null)
 
+  // console.log('this is missing state', missing)
   useEffect(()=>{
-    async function getCities(){
-     const whatever = await dispatch(fetchCities())
-     console.log("this is whatever", whatever)
-     setMarkers(whatever.cities)
+    async function getMissing(){
+     const missingObj= await dispatch(fetchMissing())
+    //  console.log('this is inside the missingObj', missingObj)
+     setMarkers(missingObj.missings) //possibly just missingObj.missing
     }
-    getCities()
+    getMissing()
   }, [dispatch]);
 
 
@@ -64,10 +69,7 @@ export default function MapPage(){
     ]);
   }, []);
 
-  //state - useState is used when we want React to re-render
-  const cities = useSelector(state => state.mapReducer)
-  const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState(null)
+ 
 
   
 
@@ -81,15 +83,17 @@ export default function MapPage(){
     mapRef.current.setZoom(14);
   }, []);
 
+
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
-  if(!cities) return "loading cities"
-  // console.log("cities--array of objs", cities)
+  if(!missing) return "loading missing"
+  
   return (
     <div className="googleMap" style={{ width: "100vw", height: "100vh" }}>
-      {/* <h1>No more stolen sisters</h1>
+      {/* <h1>No more stolen sisters</h1> */}
 
-      <Search panTo={panTo}/> */}
+      <Search panTo={panTo}/> 
       <NavBar />
 
       <GoogleMap
@@ -102,10 +106,10 @@ export default function MapPage(){
       >
        
         {/* below is the 'func' to add markers to map when a user clicks */}
-        {markers.map((city) => (
+        {missing.map((location) => (
           <Marker
-            key={city.city}
-            position={{ lat: city.lat, lng: city.lng }}
+            key={location.location}
+            position={{ lat: location.lat, lng: location.lng }}
             icon={{
               url: "/red-hand.svg",
               scaledSize: new window.google.maps.Size(50, 50),
@@ -113,7 +117,7 @@ export default function MapPage(){
               anchor: new window.google.maps.Point(25, 25),
             }}
             onClick={() => {
-              setSelected(city); // this click handler "selects" a city that is already on the map aka you will be able to 'select' it to get info
+              setSelected(location); // this click handler "selects" a city that is already on the map aka you will be able to 'select' it to get info
             }}
           />
         ))}

@@ -31,10 +31,10 @@ export const postMissing = (missing) => {
 export const fetchMissing = () => {
     return async (dispatch) => {
         const res = await fetch('/api/missing');
-        const data = await res.json()
+        res.data = await res.json()
 
-        dispatch(getMissing(data.missing))
-        return data
+        if(res.ok) dispatch(getMissing(res.data.missings))
+        return res
     }
 }
 
@@ -48,26 +48,53 @@ export const fetchOneMissing = (id) => {
     }
 }
 
-export const newMissing = (fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId) => {
-    // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId };
-    // console.log("this is the body", body);
+export const newMissing = (
+    fullName, 
+    age, 
+    tribalAffiliation, 
+    location, 
+    dateLastSeen, 
+    details, 
+    status, 
+    userId,
+    lat, 
+    lng, 
+    
+    ) => {
+    const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+    console.log("this is the body", body);
     return async dispatch => {
+        console.log('hello')
         const res = await fetch('/api/missing/new', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
                 "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
             },
-            body: JSON.stringify(fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId),
+            body: JSON.stringify({
+                fullName, 
+                age, 
+                tribalAffiliation, 
+                location, 
+                dateLastSeen, 
+                details, 
+                status, 
+                userId,
+                lat, 
+                lng, 
+                
+            }),
         });
+        console.log('this is lat lng', lat, lng)
         
         console.log('res', res)
         res.data = await res.json();
+       console.log('this is res.data', res.data.missing)
        
 
         if(res.ok){
-            dispatch(postMissing(res.data))
+            dispatch(postMissing(res.data.missings))
         } 
-        return res;
+        // return res;
     }
 }

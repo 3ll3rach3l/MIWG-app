@@ -60,8 +60,8 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const currentUserToken = useSelector(state => state.auth.id);
-  console.log("this is currentUserToken", currentUserToken)
+  const currentUserId = useSelector(state => state.auth.id);
+  // console.log("this is currentUserToken", currentUserToken)
   const dispatch = useDispatch();
 
 
@@ -75,9 +75,10 @@ export default function LoginPage() {
     e.preventDefault();
     dispatch(loginDemo());
     console.log("demo!")
+    
   }
 
-  if (currentUserToken) return <Redirect to="/" />;
+  if (currentUserId) return <Redirect to="/" />;
 
   return (
 

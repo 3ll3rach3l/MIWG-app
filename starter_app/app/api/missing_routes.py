@@ -6,7 +6,7 @@ missing_routes = Blueprint('missings', __name__)
 @missing_routes.route('')
 def showMissing():
     response = Missing.query.order_by(Missing.dateLastSeen.desc())
-    return {'missings': [person.to_dict() for person in response]}
+    return {'missings': [missing.to_dict() for missing in response]}
 
 
 @missing_routes.route('/<id>')
@@ -28,6 +28,8 @@ def add_missing():
     age = request.json.get('age')
     tribalAffiliation = request.json.get('tribalAffiliation')
     location = request.json.get('location')
+    lat = request.json.get('lat')
+    lng = request.json.get('lng')
     dateLastSeen = request.json.get('dateLastSeen')
     details = request.json.get('details')
     status = request.json.get('status')
@@ -42,6 +44,8 @@ def add_missing():
         age=age,
         tribalAffiliation=tribalAffiliation,
         location=location,
+        lat=lat,
+        lng=lng,
         dateLastSeen=dateLastSeen,
         details=details,
         status=status,
