@@ -64,26 +64,37 @@ export default function MissingForm(){
         resetForm,
     } = useForm(initialValues, true, validate);
 
-  // const extractCoord = async () => {
-  //   let address = values.location;
-  //   try{
-  //     const results = await getGeocode({ address });
-  //     const { lat, lng } = await getLatLng(results[0]);
-  //     dispatch(
-  //       newMissing(values, lat, lng)
-  //     )
-  //     return history.push('/map')
-  //   }catch(e){
-  //     console.log(e)
-  //   };
-  // } 
+  const extractCoord = async () => {
+    let address = values.location;
+    let fullName = values.fullName;
+    let age = values.age;
+    let tribalAffiliation = values.tribalAffiliation;
+    let dateLastSeen = values.dateLastSeen;
+    let details = values.details;
+    let status = values.status;
+    let userId = values.userId
+    try{
+      const results = await getGeocode({ address });
+      // console.log('this is results in extract coord', results)
+      const { lat, lng } = await getLatLng(results[0]);
+      console.log('these are coords', {lat, lng})
+      dispatch(
+        newMissing(fullName, age, tribalAffiliation, address, dateLastSeen, details, status, userId, lat, lng)
+      )
+      console.log('values and coords', values, lat, lng)
+     
+      return history.push('/map')
+    }catch(e){
+      console.log(e)
+    };
+  } 
 
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()){
-        // extractCoord()
+        extractCoord()
         // console.log("this is before dispatch", values)
-        dispatch(newMissing(values))
+        // dispatch(newMissing(values))
         // console.log("these are the values", values)
         resetForm()
       }
@@ -115,7 +126,7 @@ export default function MissingForm(){
               error={errors.tribalAffiliation}
             />
             <Controls.Input //use search component here
-              label="City Last Seen"
+              label="City, ST last seen"
               name="location"
               value={values.location}
               onChange={handleInputChange}

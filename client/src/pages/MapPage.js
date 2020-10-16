@@ -45,11 +45,11 @@ export default function MapPage(){
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null)
 
-  console.log('this is missing state', missing)
+  // console.log('this is missing state', missing)
   useEffect(()=>{
     async function getMissing(){
      const missingObj= await dispatch(fetchMissing())
-     console.log('this is inside the missingObj', missingObj)
+    //  console.log('this is inside the missingObj', missingObj)
      setMarkers(missingObj.missings) //possibly just missingObj.missing
     }
     getMissing()

@@ -28,12 +28,12 @@ class Missing(db.Model):
   age = db.Column(db.Integer, nullable=False)
   tribalAffiliation = db.Column(db.String(20), nullable=False)
   location = db.Column(db.String(50), nullable = False)
-  lat = db.Column(db.Float, nullable=False)
-  lng = db.Column(db.Float, nullable=False)
   dateLastSeen= db.Column(db.DateTime, nullable=False)
   details= db.Column(db.String(1000), nullable=True)
   status= db.Column(db.String(10), nullable=False)
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  lat = db.Column(db.Float, nullable=False)
+  lng = db.Column(db.Float, nullable=False)
 
   def to_dict(self):
     return{
@@ -42,12 +42,12 @@ class Missing(db.Model):
         "age": self.age,
         "tribalAffiliation": self.tribalAffiliation,
         "location": self.location,
-        "lat": self.lat,
-        "lng": self.lng,
         "dateLastSeen": self.dateLastSeen,
         "details": self.details,
         "status": self.status,
-        "userId": self.userId
+        "userId": self.userId,
+        "lat": self.lat,
+        "lng": self.lng,
     }
 
 # class Map(db.Model):

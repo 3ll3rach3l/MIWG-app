@@ -53,40 +53,48 @@ export const newMissing = (
     age, 
     tribalAffiliation, 
     location, 
-    lat, 
-    lng, 
     dateLastSeen, 
     details, 
     status, 
-    userId) => {
-    // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId };
-    // console.log("this is the body", body);
+    userId,
+    lat, 
+    lng, 
+    
+    ) => {
+    const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+    console.log("this is the body", body);
     return async dispatch => {
+        console.log('hello')
         const res = await fetch('/api/missing/new', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
                 "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
             },
-            body: JSON.stringify(fullName, 
+            body: JSON.stringify({
+                fullName, 
                 age, 
                 tribalAffiliation, 
                 location, 
-                lat, 
-                lng, 
                 dateLastSeen, 
                 details, 
                 status, 
-                userId),
+                userId,
+                lat, 
+                lng, 
+                
+            }),
         });
+        console.log('this is lat lng', lat, lng)
         
-        // console.log('res', res)
+        console.log('res', res)
         res.data = await res.json();
+       console.log('this is res.data', res.data.missing)
        
 
         if(res.ok){
-            dispatch(postMissing(res.data))
+            dispatch(postMissing(res.data.missings))
         } 
-        return res;
+        // return res;
     }
 }
