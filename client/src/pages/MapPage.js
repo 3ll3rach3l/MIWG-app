@@ -91,9 +91,9 @@ export default function MapPage(){
   
   return (
     <div className="googleMap" style={{ width: "100vw", height: "100vh" }}>
-      {/* <h1>No more stolen sisters</h1>
+      {/* <h1>No more stolen sisters</h1> */}
 
-      <Search panTo={panTo}/> */}
+      <Search panTo={panTo}/> 
       <NavBar />
 
       <GoogleMap
@@ -110,12 +110,12 @@ export default function MapPage(){
           <Marker
             key={location.location}
             position={{ lat: location.lat, lng: location.lng }}
-            // icon={{
-            //   url: "/red-hand.svg",
-            //   scaledSize: new window.google.maps.Size(50, 50),
-            //   origin: new window.google.maps.Point(0, 0),
-            //   anchor: new window.google.maps.Point(25, 25),
-            // }}
+            icon={{
+              url: "/red-hand.svg",
+              scaledSize: new window.google.maps.Size(50, 50),
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(25, 25),
+            }}
             onClick={() => {
               setSelected(location); // this click handler "selects" a city that is already on the map aka you will be able to 'select' it to get info
             }}
