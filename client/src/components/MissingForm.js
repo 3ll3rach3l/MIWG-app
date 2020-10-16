@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import history from '../store/history';
 import { Grid, TextField} from '@material-ui/core';
 import { useForm, Form } from './useForm';
 import Controls from '../components/controls/Controls';
@@ -13,10 +18,9 @@ const statusItems = [
     {id: 'deceased', title: 'Deceased'},
 ]
 
-
 export default function MissingForm(){
   const dispatch = useDispatch()
-  const userId = useSelector(state => state.auth.user.id);
+  const userId = useSelector(state => state.auth.id);
   // console.log("userId", userId)
   // if (!userId) return <Redirect to='/login'></Redirect>
   
@@ -60,16 +64,31 @@ export default function MissingForm(){
         resetForm,
     } = useForm(initialValues, true, validate);
 
+  // const extractCoord = async () => {
+  //   let address = values.location;
+  //   try{
+  //     const results = await getGeocode({ address });
+  //     const { lat, lng } = await getLatLng(results[0]);
+  //     dispatch(
+  //       newMissing(values, lat, lng)
+  //     )
+  //     return history.push('/map')
+  //   }catch(e){
+  //     console.log(e)
+  //   };
+  // } 
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()){
-        console.log("this is before dispatch", values)
+        // extractCoord()
+        // console.log("this is before dispatch", values)
         dispatch(newMissing(values))
-        console.log("these are the values", values)
+        // console.log("these are the values", values)
         resetForm()
       }
   }
-
+  // if (!userId) return null
     return (
       <Form onSubmit={handleSubmit}>
         <Grid container>

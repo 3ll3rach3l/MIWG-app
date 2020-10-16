@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import { useDispatch, useSelector } from "react-redux";
-import {fetchCities, postCity} from '../store/actions/map';
+import { fetchMissing } from '../store/actions/missing';
 import {useQuery, useMutation, queryCache} from 'react-query'
 
 import mapStyles from './mapStyles'
@@ -42,12 +42,12 @@ export default function MapPage(){
   });
 
   useEffect(()=>{
-    async function getCities(){
-     const whatever = await dispatch(fetchCities())
-     console.log("this is whatever", whatever)
-     setMarkers(whatever.cities)
+    async function getMissing(){
+     const missingObj= await dispatch(fetchMissing())
+    //  console.log(misingObj)
+     setMarkers(missingObj.missingReducer.missing) //possibly just missingObj.missing
     }
-    getCities()
+    getMissing()
   }, [dispatch]);
 
 
@@ -104,14 +104,14 @@ export default function MapPage(){
         {/* below is the 'func' to add markers to map when a user clicks */}
         {markers.map((city) => (
           <Marker
-            key={city.city}
+            key={city.location}
             position={{ lat: city.lat, lng: city.lng }}
-            icon={{
-              url: "/red-hand.svg",
-              scaledSize: new window.google.maps.Size(50, 50),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(25, 25),
-            }}
+            // icon={{
+            //   url: "/red-hand.svg",
+            //   scaledSize: new window.google.maps.Size(50, 50),
+            //   origin: new window.google.maps.Point(0, 0),
+            //   anchor: new window.google.maps.Point(25, 25),
+            // }}
             onClick={() => {
               setSelected(city); // this click handler "selects" a city that is already on the map aka you will be able to 'select' it to get info
             }}
