@@ -127,10 +127,12 @@ export default function MapPage(){
           onCloseClick={()=>{setSelected(null)}}
           >
             <div>
-              <h2>This is Dope</h2>
-              <p>
-                Deciding how I want to utilize this...
-              </p>
+              <h2>{selected.fullName}</h2>
+              <h3>
+                Tribal Affiliation: {selected.tribalAffiliation}
+              </h3>
+              <h3>Last Seen: {selected.dateLastSeen}</h3>
+              <h4>Details: {selected.details}</h4>
             </div>
           </InfoWindow>
         ) : null}
