@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMissing } from '../store/actions/missing';
-import {useQuery, useMutation, queryCache} from 'react-query'
+
 
 import mapStyles from './mapStyles'
 import Search from '../components/Search'
@@ -12,7 +12,7 @@ import './mapPage.css'
 
 
 
-//can go in it's own component
+
 const libraries = ['places'];
 
 const mapContainerStyle = {
@@ -49,25 +49,25 @@ export default function MapPage(){
   useEffect(()=>{
     async function getMissing(){
      const missingObj= await dispatch(fetchMissing())
-    //  console.log('this is inside the missingObj', missingObj)
-     setMarkers(missingObj.missings) //possibly just missingObj.missing
+    console.log('this is inside the missingObj', missingObj)
+     setMarkers(missingObj.missings) 
     }
     getMissing()
   }, [dispatch]);
 
 
   //this event is listening for every click on map and registering the lat & long in state
-  const onMapClick = React.useCallback((e) => {
-   // dispatch(postCity(city, state, lat, lng))
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []);
+  // const onMapClick = React.useCallback((e) => {
+  //  // dispatch(postCity(city, state, lat, lng))
+  //   setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       lat: e.latLng.lat(),
+  //       lng: e.latLng.lng(),
+  //       time: new Date(),
+  //     },
+  //   ]);
+  // }, []);
 
  
 
@@ -91,7 +91,6 @@ export default function MapPage(){
   
   return (
     <div className="googleMap" style={{ width: "100vw", height: "100vh" }}>
-      {/* <h1>No more stolen sisters</h1> */}
 
       <Search panTo={panTo}/> 
       <NavBar />

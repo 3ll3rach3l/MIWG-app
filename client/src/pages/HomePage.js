@@ -18,6 +18,7 @@ function HomePage() {
         </div>
         <div>
             <Link to="/map">Map</Link>
+            <Link to="/missing">Missing</Link>
 
         </div>
         <div>

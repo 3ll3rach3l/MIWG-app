@@ -34,17 +34,17 @@ export const fetchMissing = () => {
         res.data = await res.json()
 
         if(res.ok) dispatch(getMissing(res.data.missings))
-        return res
+        return res.data
     }
 }
 
 export const fetchOneMissing = (id) => {
     return async (dispatch) => {
-        const res = await fetch(`/api/missing/${id}`);
-        const data = await res.json();
-        dispatch(getOneMissing(data.oneMissing))
+        const res = await fetch(`/api/missing/search_by_id?id=${id}`);
+        res.data = await res.json();
+        dispatch(getOneMissing(res.data.missings))
 
-        return data
+        return res
     }
 }
 

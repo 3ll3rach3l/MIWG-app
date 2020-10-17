@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMissing } from '../store/actions/missing';
+
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import {Card, CardHeader, CardMedia, CardContent, CardActions,
+Collapse, Avatar, IconButton, Typography} from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -42,63 +38,76 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MissingCard() {
+    const dispatch = useDispatch()
     const classes = useStyles();
+
+    const [card, setCard] = React.useState([]);
     const [expanded, setExpanded] = React.useState(false);
+
+    const currentUserId = useSelector(state=> state.auth.id)
+    
+
+
+
+    const missing = useSelector(state => state.missingReducer.missing)
+    console.log('missing', missing)
+
+   
+    useEffect(() => {
+        async function getMissing() {
+            const missingObj = await dispatch(fetchMissing())
+            console.log('this is inside the missingObj', missingObj)
+            await setCard(missingObj)
+        }
+        getMissing()
+    }, [dispatch]);
+
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
+    if(!missing) return 'loading cards...'
+
     return (
         <Card className={classes.root}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
-                    </Avatar>
-                }
-                // action={
-                //     <IconButton aria-label="settings">
-                //         <MoreVertIcon />
-                //     </IconButton>
-                // }
-                title="First and Last Name"
-                subheader="Date Last Seen"
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                    M
+                </Avatar>}
+                            
+                // title={item.fullName}
+                // subheader={missing.dateLastSeen}
             />
             <CardMedia
                 className={classes.media}
-                image="/static/images/cards/paella.jpg"
+                // image="/static/images/cards/paella.jpg"
                 title="Paella dish"
             />
             <CardActions disableSpacing>
                 <Typography paragraph>More Info:</Typography>
-               
+
                 <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
+                    className={clsx(classes.expand, {                            [classes.expandOpen]: expanded,
+                        })}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
                     <ExpandMoreIcon />
                 </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    <Typography paragraph>Age</Typography>
-                    <Typography paragraph>Tribal Affiliation</Typography>
-                    <Typography paragraph>City Last Seen</Typography>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                {/* <CardContent>
+                    <Typography paragraph>Age: {missing.age}</Typography>
+                    <Typography paragraph>Tribal Afilliiation: {missing.tribalAffiliation}</Typography>
+                    <Typography paragraph>Date Last Seen: {missing.location}</Typography>
                     <Typography paragraph> Details:</Typography>
-                    <Typography paragraph>
-                        This project is for demonstration purposes only. Please contact local
-                        authorities if you need to report a missing person.
-          </Typography>
-                    <Typography>
-                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-                </CardContent>
-            </Collapse>
+                    <Typography paragraph>{missing.details}</Typography>
+                    </CardContent> */}
+        </Collapse>
         </Card>
-    );
+    ) 
+
 }
