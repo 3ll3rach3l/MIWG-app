@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import usePlacesAutocomplete, {
+import {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
 import history from '../store/history';
-import { Grid, TextField} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useForm, Form } from './useForm';
 import Controls from '../components/controls/Controls';
 import { newMissing } from '../store/actions/missing';
@@ -21,8 +21,7 @@ const statusItems = [
 export default function MissingForm(){
   const dispatch = useDispatch()
   const userId = useSelector(state => state.auth.id);
-  // console.log("userId", userId)
-  // if (!userId) return <Redirect to='/login'></Redirect>
+  
   
   const validate = (fieldValues = values) =>{
     let temp = {...errors}
@@ -52,7 +51,7 @@ export default function MissingForm(){
       details: '',
       status: 'missing',
       userId: userId
-      // isPermanent: false,
+      
   }
 
     const {
@@ -81,7 +80,7 @@ export default function MissingForm(){
       dispatch(
         newMissing(fullName, age, tribalAffiliation, address, dateLastSeen, details, status, userId, lat, lng)
       )
-      console.log('values and coords', values, lat, lng)
+      // console.log('values and coords', values, lat, lng)
      
       return history.push('/map')
     }catch(e){
@@ -93,9 +92,6 @@ export default function MissingForm(){
       e.preventDefault()
       if (validate()){
         extractCoord()
-        // console.log("this is before dispatch", values)
-        // dispatch(newMissing(values))
-        // console.log("these are the values", values)
         resetForm()
       }
   }
@@ -125,7 +121,7 @@ export default function MissingForm(){
               onChange={handleInputChange}
               error={errors.tribalAffiliation}
             />
-            <Controls.Input //use search component here
+            <Controls.Input 
               label="City, ST last seen"
               name="location"
               value={values.location}

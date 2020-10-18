@@ -9,15 +9,19 @@ def showMissing():
     return {'missings': [missing.to_dict() for missing in response]}
 
 
-@missing_routes.route('/<id>')
+@missing_routes.route('/search_by_id')
 def one_missing(id):
 
-    missing = Missing.query.filter_by(id=id).first()
-    missingsDict = missing.to_dict()
-    user = User.query.filter_by(id=missing.userId).first()
-    usersDict = user.to_dict()
-    missingsDict["username"] = usersDict["username"]
-    return jsonify(missing=missingsDict), 200
+    missingId = request.args.get('id', None)
+    missing = Missing.query.get(missingId)
+    missing = missing.to_dict()
+    return {'missing': missing}, 200
+    # missingId = Missing.query.filter_by(id=id).first()
+    # missingsDict = missing.to_dict()
+    # user = User.query.filter_by(id=missing.userId).first()
+    # usersDict = user.to_dict()
+    # missingsDict["username"] = usersDict["username"]
+    # return jsonify(missing=missingsDict), 200
 
 @missing_routes.route('/new', methods=['POST'])
 def add_missing():

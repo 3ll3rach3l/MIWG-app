@@ -15,8 +15,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-
+import { Paper } from "@material-ui/core";
+import '../index.css'
 
 function Copyright() {
   return (
@@ -32,26 +32,32 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  body: {
     backgroundColor: 'black'
   },
   paper: {
-    marginTop: theme.spacing(8),
+    margin: theme.spacing(5),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    padding: theme.spacing(3),
+    width: '100%'
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  // pageContent: {
+  //   margin: theme.spacing(5),
+  //   padding: theme.spacing(3),
+  // },
 }));
 
 export default function LoginPage() {
@@ -74,7 +80,7 @@ export default function LoginPage() {
   const handleDemoSubmit = e => {
     e.preventDefault();
     dispatch(loginDemo());
-    console.log("demo!")
+    
     
   }
 
@@ -84,7 +90,7 @@ export default function LoginPage() {
 
     <Container component="main" maxWidth="xs">
 
-      <div className={classes.paper}>
+      <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -139,7 +145,7 @@ export default function LoginPage() {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Paper>
       <Box mt={8}>
         <Copyright />
       </Box>
