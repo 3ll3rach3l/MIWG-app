@@ -1,7 +1,8 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, IconButton } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import history from '../store/history'
 
+import { AppBar, Toolbar, Typography, Button, IconButton, MenuItem, Menu } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from "@material-ui/icons/Menu";
 
 import useModal from "../components/useModal";
@@ -26,6 +27,15 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
   const { isShowing, toggle } = useModal();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className={classes.root}>
@@ -36,8 +46,11 @@ export default function ButtonAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+           
           >
-            <MenuIcon />
+              <MenuItem onClick={(()=> history.push('/'))}> Home </MenuItem>
+              <MenuItem onClick={()=> history.push('/missing')}>View Missing</MenuItem>
+              {/* <MenuItem onClick={handleClose}>Finished Reading</MenuItem> */}
           </IconButton>
           <Button variant="contained" color="secondary" onClick={toggle}>
             <Typography variant="h8" className={classes.title}>
@@ -45,10 +58,7 @@ export default function ButtonAppBar() {
             </Typography>
           </Button>
           <FormModal isShowing={isShowing} hide={toggle} />
-          {/* <Typography variant="h6" className={classes.title}>
-            News
-          </Typography> */}
-          {/* <Button variant="contained" color="inherit">Log Out</Button> */}
+          
           <LogoutButton />
         </Toolbar>
       </AppBar>

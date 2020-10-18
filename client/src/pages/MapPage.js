@@ -80,7 +80,7 @@ export default function MapPage(){
 
   const panTo = React.useCallback(({lat, lng}) => { //this is for panning to the city input from search
     mapRef.current.panTo({lat, lng});
-    mapRef.current.setZoom(10);
+    mapRef.current.setZoom(8);
   }, []);
 
 
