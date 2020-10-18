@@ -55,13 +55,13 @@ export default function MissingCard() {
 
 
     const missing = useSelector(state => state.missingReducer.missing)
-    console.log('missing', missing)
+    // console.log('missing', missing)
 
    
     useEffect(() => {
         async function getMissing() {
             const missingObj = await dispatch(fetchMissing())
-            console.log('this is inside the missingObj', missingObj.missings)
+            // console.log('this is inside the missingObj', missingObj.missings)
             await setCard(missingObj.missings)
         }
         getMissing()
@@ -82,7 +82,7 @@ export default function MissingCard() {
                 <Card key={person.id} className={classes.root}> 
                     <CardHeader
                         avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
+                        <Avatar className={classes.avatar}>
                             M
                         </Avatar>}
 
@@ -112,6 +112,7 @@ export default function MissingCard() {
                          <Typography paragraph>Age: {person.age} </Typography>
                          <Typography paragraph>Tribal Afilliiation: {person.tribalAffiliation} </Typography>
                         <Typography paragraph>Date Last Seen: {person.dateLastSeen}</Typography>
+                        <Typography paragraph>Location Last Seen: {person.location}</Typography>
                          <Typography paragraph> Details:</Typography>
                          <Typography paragraph>{person.details}</Typography>
                      </CardContent>
