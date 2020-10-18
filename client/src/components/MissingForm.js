@@ -93,6 +93,7 @@ export default function MissingForm(){
       if (validate()){
         extractCoord()
         resetForm()
+        alert('Submitted')
       }
   }
   // if (!userId) return null

@@ -128,7 +128,7 @@ export default function MapPage(){
           >
             <div>
               <h2>{selected.fullName}</h2>
-              <h3>{selected.status}</h3>
+              <h2>{selected.status}</h2>
               <h3>
                 Tribal Affiliation: {selected.tribalAffiliation}
               </h3>
