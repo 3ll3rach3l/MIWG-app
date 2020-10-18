@@ -109,6 +109,7 @@ export default function SignupPage() {
                 fullWidth
                 name="password"
                 label="Password"
+                type="password"
                 id="passwordSignup"
                 onChange={(e) => setPassword(e.target.value)}
               />
