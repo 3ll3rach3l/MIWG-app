@@ -77,8 +77,8 @@ export default function MissingCard() {
                     M
                 </Avatar>}
                             
-                // title={item.fullName}
-                // subheader={missing.dateLastSeen}
+                title="Full Name"
+                subheader="Date Last Seen"
             />
             <CardMedia
                 className={classes.media}
@@ -89,7 +89,7 @@ export default function MissingCard() {
                 <Typography paragraph>More Info:</Typography>
 
                 <IconButton
-                    className={clsx(classes.expand, {                            [classes.expandOpen]: expanded,
+                    className={clsx(classes.expand, {                 [classes.expandOpen]: expanded,
                         })}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
@@ -99,13 +99,13 @@ export default function MissingCard() {
                 </IconButton>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
-                {/* <CardContent>
-                    <Typography paragraph>Age: {missing.age}</Typography>
-                    <Typography paragraph>Tribal Afilliiation: {missing.tribalAffiliation}</Typography>
-                    <Typography paragraph>Date Last Seen: {missing.location}</Typography>
+                <CardContent>
+                    <Typography paragraph>Age: </Typography>
+                    <Typography paragraph>Tribal Afilliiation: </Typography>
+                    <Typography paragraph>Date Last Seen:</Typography>
                     <Typography paragraph> Details:</Typography>
                     <Typography paragraph>{missing.details}</Typography>
-                    </CardContent> */}
+                </CardContent>
         </Collapse>
         </Card>
     ) 
