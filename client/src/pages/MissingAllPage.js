@@ -28,33 +28,8 @@ export default function MissingAll(){
     
 
     return(
-            <Grid container spacing={4} className={classes.gridContainer} justify='center'>
-                <Grid item xs={12} sm={6} md={4}>
-                    <MissingCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <MissingCard/>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <MissingCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <MissingCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <MissingCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <MissingCard/>
-                </Grid>
-            {/* {missing.map((person, idx) => {
-                return(
-                    <Grid item xs={12} sm={6} md={4}>
-                        <MissingCard idx={idx} key={idx.id}/>
-                    </Grid>
-                )
-            })} */}
-                
-            </Grid>
+        <div>
+            <MissingCard />
+        </div>
     )
 }

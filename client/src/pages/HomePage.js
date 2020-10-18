@@ -7,7 +7,6 @@ import { Paper, Container, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
- 
   paper: {
     margin: theme.spacing(5),
     display: 'flex',
@@ -16,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(5),
     width: '80%',
     color: 'red',
+    opacity: .8
     
   },
 
