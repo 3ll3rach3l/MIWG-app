@@ -35,8 +35,7 @@ const FormModal = ({isShowing, hide}) => {
                 <div className="modal">
                   <Paper className={classes.pageContent}>
                     <MissingForm />
-                  </Paper>
-                  <div className="modal-header">
+                     <div className="modal-header">
                     <button
                       type="button"
                       className="modal-close-button"
@@ -47,6 +46,8 @@ const FormModal = ({isShowing, hide}) => {
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
+                  </Paper>
+                 
                   {/* <p>
                Hello, I'm a modal.
              </p> */}

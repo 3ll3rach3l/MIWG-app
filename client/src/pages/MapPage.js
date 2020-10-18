@@ -109,12 +109,12 @@ export default function MapPage(){
           <Marker
             key={location.location}
             position={{ lat: location.lat, lng: location.lng }}
-            icon={{
-              url: "/red-hand.svg",
-              scaledSize: new window.google.maps.Size(50, 50),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(25, 25),
-            }}
+            // icon={{
+            //   url: "/red-hand.svg",
+            //   scaledSize: new window.google.maps.Size(50, 50),
+            //   origin: new window.google.maps.Point(0, 0),
+            //   anchor: new window.google.maps.Point(25, 25),
+            // }}
             onClick={() => {
               setSelected(location); // this click handler "selects" a city that is already on the map aka you will be able to 'select' it to get info
             }}
