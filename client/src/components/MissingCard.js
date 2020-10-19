@@ -91,8 +91,8 @@ export default function MissingCard() {
                     />
                     <CardMedia
                     className={classes.media}
-                    // image="/static/images/cards/paella.jpg"
-                    title="Paella dish"
+                    image="/MMIW-BLOG.png"
+                    title="Recent Photo"
                     />
                      <CardActions disableSpacing>
                     <Typography paragraph>More Info:</Typography>
@@ -112,7 +112,7 @@ export default function MissingCard() {
                          <Typography paragraph>Age: {person.age} </Typography>
                          <Typography paragraph>Tribal Afilliiation: {person.tribalAffiliation} </Typography>
                         <Typography paragraph>Date Last Seen: {person.dateLastSeen}</Typography>
-                        <Typography paragraph>Location Last Seen: {person.location}</Typography>
+                        <Typography paragraph>City Last Seen: {person.location}</Typography>
                          <Typography paragraph> Details:</Typography>
                          <Typography paragraph>{person.details}</Typography>
                      </CardContent>

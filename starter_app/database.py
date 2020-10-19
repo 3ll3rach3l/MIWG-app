@@ -79,7 +79,7 @@ with app.app_context():
                 details='example post',
                 status='found',
                 userId=5)
-  losAngeles = Missing(fullName='Angel Cuidad',
+  losAngeles = Missing(fullName='Mia Pia',
   age=18,
   tribalAffiliation='Pomo',
   location='Los Angeles', 
@@ -100,7 +100,7 @@ with app.app_context():
      status='missing',
      userId=6
      )
-  okCity = Missing(fullName='Missy Sissy',
+  okCity = Missing(fullName='Missy In Action',
   age=36,
   tribalAffiliation='Choctaw',
   location="Oklahoma City",
