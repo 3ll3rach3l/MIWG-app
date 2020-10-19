@@ -91,8 +91,8 @@ export default function MissingCard() {
                     />
                     <CardMedia
                     className={classes.media}
-                    // image="/static/images/cards/paella.jpg"
-                    title="Paella dish"
+                    image="/MMIW-BLOG.png"
+                    title="Recent Photo"
                     />
                      <CardActions disableSpacing>
                     <Typography paragraph>More Info:</Typography>
