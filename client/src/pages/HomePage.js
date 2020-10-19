@@ -1,10 +1,13 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import history from '../store/history';
 
-import LogoutButton from '../components/LogoutButton';
-import { Paper, Container, Typography } from "@material-ui/core";
+import Controls from '../components/controls/Controls';
+import { Paper, Container, Typography, Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+
+import './homePage.css'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -18,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     opacity: .8
     
   },
+
+  buttons:{
+      padding: '10px',
+      width: '100%'
+  }
 
 }));
 
@@ -36,11 +44,19 @@ export default function HomePage() {
                 It is hoped that by wearing red, we can call back the missing spirits
                 of our women and children so we can lay them to rest...
                 </Typography>
-                <div> 
-                    <Link to="/map">Map</Link>
-                </div>
-                <div>
-                <Link to="/missing">Missing</Link>
+                <div className='buttonContainer'> 
+                     <Controls.Button 
+                     type="submit" 
+                     text="Map" 
+                     className={classes.buttons}
+                     onClick={() => history.push('/map')}/>
+                    <Controls.Button
+                      text="Missing"
+                      className={classes.buttons}
+                      color="default"
+                      onClick={() => history.push('/missing')}
+                    />
+                    
                 </div>
             </Paper>
             </Container>
