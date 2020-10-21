@@ -61,8 +61,8 @@ export const newMissing = (
     lng, 
     
     ) => {
-    const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
-    console.log("this is the body", body);
+    // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+    // console.log("this is the body", body);
     return async dispatch => {
         console.log('hello')
         const res = await fetch('/api/missing/new', {
@@ -96,5 +96,46 @@ export const newMissing = (
             dispatch(postMissing(res.data.newMissing))
         } 
         // return res;
+    }
+}
+
+export const updateMissing = (
+    currentMissingId,
+    fullName, 
+    age, 
+    tribalAffiliation, 
+    location, 
+    dateLastSeen, 
+    details, 
+    status, 
+    userId,
+    lat, 
+    lng, 
+) => {
+    return async dispatch => {
+        const res = await fetch('/api/missing/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                currentMissingId,
+                fullName, 
+                age, 
+                tribalAffiliation, 
+                location, 
+                dateLastSeen, 
+                details, 
+                status, 
+                userId,
+                lat, 
+                lng, 
+            })
+        });
+        res.data = await res.json()
+        if(res.ok){
+            dispatch(getOneMissing(res.data.missings))
+        }
+        return res;
     }
 }

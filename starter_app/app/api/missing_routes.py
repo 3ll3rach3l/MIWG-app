@@ -66,3 +66,42 @@ def add_missing():
 
     return jsonify(newMissing=missing1), 200
 
+@missing_routes.route('/update', methods=['PUT'])
+def update_missing():
+    missingId = request.json.get('id')
+    missing = Missing.query.filter(Missing.id == missingId).first()
+    new_name = request.json.get('fullName')
+    new_age = request.json.get('age')
+    new_affiliation = request.json.get('tribalAffiliation')
+    new_location = request.json.get('location')
+    new_dateLastSeen = request.json.get('dateLastSeen')
+    new_details = request.json.get('details')
+    new_status = request.json.get('status')
+    new_lat = request.json.get('lat')
+    new_lng = request.json.get('lng')
+
+    if new_name:
+        missing.fullName = new_name
+    if new_age:
+        missing.age = new_age
+    if new_affiliation:
+        missing.tribalAffiliation = new_affiliation
+    if new_dateLastSeen:
+        missing.dateLastSeen = new_dateLastSeen
+    if new_details:
+        missing.details = new_details
+    if new_status:
+        missing.status = new_status
+    if new_location:
+        missing.location = new_location
+        missing.lat = new_lat
+        missing.lng = new_lng
+    else:
+        missing.location = missing.location
+        missing.lat = missing.lat
+        missing.lng = missing.lng
+    
+    db.session.add(missing)
+    db.session.commit()
+
+    return {'missing': missing.to_dict(), 'msg': 'Missing MIWG updated successfully!'}, 200
