@@ -8,6 +8,8 @@ import {Card, CardHeader, CardMedia, CardContent, CardActions,
 Collapse, Avatar, IconButton, Typography, Grid} from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,7 +87,11 @@ export default function MissingCard() {
                         <Avatar className={classes.avatar}>
                             M
                         </Avatar>}
-
+                         action={
+                        <IconButton aria-label="settings">
+                          <MoreVertIcon />
+                        </IconButton>
+                        }
                         title={person.fullName}
                         subheader={person.status}
                     />

@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 export const GET_MISSING = 'GET_MISSING';
 export const GET_ONE_MISSING = 'GET_ONE_MISSING';
 export const POST_MISSING = 'POST_MISSING';
+export const UPDATE_MISSING = 'UPDATE_MISSING';
 
 ///////////////ACTIONS//////////////////
 
@@ -23,6 +24,13 @@ export const getOneMissing = (oneMissing) => {
 export const postMissing = (missing) => {
     return {
         type: POST_MISSING,
+        missing
+    }
+}
+
+export const updateMissing = (missing) =>{
+    return{
+        type: UPDATE_MISSING,
         missing
     }
 }
@@ -99,8 +107,8 @@ export const newMissing = (
     }
 }
 
-export const updateMissing = (
-    currentMissingId,
+export const modifyMissing = (
+    id,
     fullName, 
     age, 
     tribalAffiliation, 
@@ -119,7 +127,7 @@ export const updateMissing = (
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                currentMissingId,
+                id,
                 fullName, 
                 age, 
                 tribalAffiliation, 
@@ -134,7 +142,7 @@ export const updateMissing = (
         });
         res.data = await res.json()
         if(res.ok){
-            dispatch(getOneMissing(res.data.missings))
+            dispatch(updateMissing(res.data.missings))
         }
         return res;
     }
