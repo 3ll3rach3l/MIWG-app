@@ -52,7 +52,6 @@ export default function ButtonAppBar() {
           >
               <Button className={classes.homeButton} variant='contained' onClick={(()=> history.push('/'))}> Home </Button>
               <MenuItem onClick={()=> history.push('/missing')}>View Missing</MenuItem>
-              {/* <MenuItem onClick={handleClose}>Finished Reading</MenuItem> */}
           </IconButton>
           {currentUserId ? <Button variant="contained" color="secondary" onClick={toggle}>
             <Typography variant="h8" className={classes.title}>

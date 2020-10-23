@@ -32,9 +32,10 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  body: {
-    backgroundColor: 'black'
-  },
+   background:{
+        default: 'black'
+
+    },
   paper: {
     margin: theme.spacing(5),
     display: 'flex',

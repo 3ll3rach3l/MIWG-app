@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 200,
     },
+    background:{
+        default: 'black'
+
+    },
     media: {
         height: 0,
         paddingTop: '56.25%', // 16:9
@@ -54,7 +58,7 @@ export default function MissingCard() {
     const classes = useStyles();
     const { isShowing, toggle } = useModal();   
     const [card, setCard] = React.useState([]);
-    const [expanded, setExpanded] = React.useState(false);
+    const [expandedId, setExpandedId] = React.useState(-1);
     const currentUserId = useSelector(state=> state.auth.id)
     const missing = useSelector(state => state.missingReducer.missing)
     console.log('missing', missing)
@@ -70,8 +74,9 @@ export default function MissingCard() {
     }, [dispatch]);
     
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const handleExpandClick = (i) => {
+        // setExpanded(!expanded);
+        setExpandedId(expandedId === i ? -1 : i)
     };
 
     const viewOneMissing = () => {
@@ -83,7 +88,7 @@ export default function MissingCard() {
 
     return (
         <Grid container spacing={4} className={classes.gridContainer} justify='center'>
-            {missing.map((person) => (
+            {missing.map((person, i) => (
             <Grid item xs={12} sm={6} md={4}>
 
                 <Card key={person.id} className={classes.root}> 
@@ -108,17 +113,17 @@ export default function MissingCard() {
                      <CardActions disableSpacing>
                     <Typography paragraph>More Info:</Typography>
                     <IconButton
-                        className={clsx(classes.expand, {
-                            [classes.expandOpen]: expanded,
-                            })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
+                        // className={clsx(classes.expand, {
+                        //     [classes.expandOpen]: expanded,
+                        //     })}
+                        onClick={() => handleExpandClick(i)}
+                        aria-expanded={expandedId === i}
                         aria-label="show more"
                     >
                     <ExpandMoreIcon />
                     </IconButton>
                     </CardActions>
-                     <Collapse in={expanded} timeout="auto" unmountOnExit>
+                     <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
                      <CardContent>
                          <Typography paragraph>Age: {person.age} </Typography>
                          <Typography paragraph>Tribal Afilliiation: {person.tribalAffiliation} </Typography>

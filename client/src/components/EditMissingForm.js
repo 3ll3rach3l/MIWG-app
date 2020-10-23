@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOneMissing } from '../store/actions/missing';
+import { modifyMissing, fetchOneMissing } from '../store/actions/missing';
 import {
   getGeocode,
   getLatLng,
@@ -9,7 +9,7 @@ import history from '../store/history';
 import { Grid } from '@material-ui/core';
 import { Form } from './useForm';
 import Controls from '../components/controls/Controls';
-import { modifyMissing } from '../store/actions/missing';
+
 
 
 
@@ -22,7 +22,7 @@ const statusItems = [
 export default function EditMissingForm(){
   const userId = useSelector(state => state.auth.id);
   const missing = useSelector(state => state.missingReducer.missing)
-  console.log('this is missing', missing)
+  console.log('this is one missing', missing)
   const [card, setCard] = React.useState([]);
   const [fullName, setFullName] = useState(null);
   const [age, setAge] = useState(null);
@@ -52,7 +52,7 @@ export default function EditMissingForm(){
       const { lat, lng } = await getLatLng(results[0]);
       console.log('these are coords in edit missing form', {lat, lng})
       dispatch(
-        modifyMissing(currentMissingId, fullName, age, tribalAffiliation, address, dateLastSeen, details, status, userId, lat, lng)
+        modifyMissing(fullName, age, tribalAffiliation, address, dateLastSeen, details, status, userId, lat, lng)
       )
       // console.log('values and coords', values, lat, lng)
      
@@ -68,7 +68,6 @@ export default function EditMissingForm(){
       } else{
           dispatch(
               modifyMissing(
-                  currentMissingId,
                   fullName, 
                   age, 
                   tribalAffiliation, 
@@ -82,8 +81,7 @@ export default function EditMissingForm(){
       }
   }
  
-  if (!missing) return null
-  let currentMissingId = missing.id
+ 
 
     return (
       <Form onSubmit={handleUpdateMissing}>
@@ -100,7 +98,6 @@ export default function EditMissingForm(){
               label="Update Age"
               value={person.age}
               name="age"
-            //  value={missing.age}
               onChange={e => setAge(e.target.value)}
             />
             <Controls.Input

@@ -108,7 +108,7 @@ export const newMissing = (
 }
 
 export const modifyMissing = (
-    id,
+   
     fullName, 
     age, 
     tribalAffiliation, 
@@ -120,6 +120,8 @@ export const modifyMissing = (
     lat, 
     lng, 
 ) => {
+     const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+    console.log("this is the body", body);
     return async dispatch => {
         const res = await fetch('/api/missing/update', {
             method: 'PUT',
@@ -127,7 +129,7 @@ export const modifyMissing = (
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id,
+              
                 fullName, 
                 age, 
                 tribalAffiliation, 
