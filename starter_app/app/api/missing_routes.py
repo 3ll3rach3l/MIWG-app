@@ -10,7 +10,7 @@ def showMissing():
 
 
 @missing_routes.route('/search_by_id')
-def one_missing(id):
+def one_missing():
 
     missingId = request.args.get('id', None)
     missing = Missing.query.get(missingId)

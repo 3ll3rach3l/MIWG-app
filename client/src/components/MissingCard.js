@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import history from '../store/history'
+
+import useModal from "../components/useModal";
+import EditFormModal from "../components/EditFormModal"
+
 import { fetchMissing } from '../store/actions/missing';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,17 +52,12 @@ const useStyles = makeStyles((theme) => ({
 export default function MissingCard() {
     const dispatch = useDispatch()
     const classes = useStyles();
-
+    const { isShowing, toggle } = useModal();   
     const [card, setCard] = React.useState([]);
     const [expanded, setExpanded] = React.useState(false);
-
     const currentUserId = useSelector(state=> state.auth.id)
-    
-
-
-
     const missing = useSelector(state => state.missingReducer.missing)
-    // console.log('missing', missing)
+    console.log('missing', missing)
 
    
     useEffect(() => {
@@ -74,6 +74,11 @@ export default function MissingCard() {
         setExpanded(!expanded);
     };
 
+    const viewOneMissing = () => {
+         toggle()
+        // dispatch(fetchOneMissing())
+    }
+
     if(!missing) return 'loading cards...'
 
     return (
@@ -89,7 +94,7 @@ export default function MissingCard() {
                         </Avatar>}
                          action={
                         <IconButton aria-label="settings">
-                          <MoreVertIcon />
+                          <MoreVertIcon onClick={viewOneMissing} />
                         </IconButton>
                         }
                         title={person.fullName}
@@ -127,7 +132,7 @@ export default function MissingCard() {
                 </Card>
           </Grid>
           ))}
-
+         <EditFormModal isShowing={isShowing} hide={toggle} />
         </Grid>
    
     ) 

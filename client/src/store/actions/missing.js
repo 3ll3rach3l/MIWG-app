@@ -14,10 +14,10 @@ export const getMissing = (missing) =>{
     }
 }
 
-export const getOneMissing = (oneMissing) => {
+export const getOneMissing = (missing) => {
     return {
         type: GET_ONE_MISSING,
-        oneMissing
+        missing
     }
 }
 

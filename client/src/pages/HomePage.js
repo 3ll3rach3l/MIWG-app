@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HomePage() {
-    const isLoggedIn = useSelector(state => !!state.auth.id);
+    const isLoggedIn = useSelector(state => state.auth.id);
+    
     const classes = useStyles();
     // console.log("this is isLoggedIn", isLoggedIn)
     if (!isLoggedIn) return <Redirect to='/login'></Redirect>

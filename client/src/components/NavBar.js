@@ -34,17 +34,10 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
   const { isShowing, toggle } = useModal();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isLoggedIn = useSelector((state) => state.auth.id)
-  console.log(isLoggedIn)
+  const currentUserId = useSelector((state) => state.auth.id)
+  console.log('current user id', currentUserId)
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+ 
 
   return (
     <div className={classes.root}>
@@ -61,7 +54,7 @@ export default function ButtonAppBar() {
               <MenuItem onClick={()=> history.push('/missing')}>View Missing</MenuItem>
               {/* <MenuItem onClick={handleClose}>Finished Reading</MenuItem> */}
           </IconButton>
-          {isLoggedIn ? <Button variant="contained" color="secondary" onClick={toggle}>
+          {currentUserId ? <Button variant="contained" color="secondary" onClick={toggle}>
             <Typography variant="h8" className={classes.title}>
                 Report Missing
             </Typography> </Button>: (<Button variant="contained" color="secondary" onClick={toggle} disabled>
@@ -71,7 +64,7 @@ export default function ButtonAppBar() {
           
           
           <FormModal isShowing={isShowing} hide={toggle} />
-          {isLoggedIn ? <LogoutButton /> : null}
+          {currentUserId ? <LogoutButton /> : null}
           
         </Toolbar>
       </AppBar>
