@@ -24,14 +24,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   homeButton:{
-    marginRight: theme.spacing(1),
+     marginRight: theme.spacing(1),
     marginLeft: theme.spacing(10),
-    width: '20%',
+    width: '25%'
   }
   
 }));
 
-export default function ButtonAppBar() {
+export default function MissingNav() {
   const classes = useStyles();
   const { isShowing, toggle } = useModal();
   const currentUserId = useSelector((state) => state.auth.id)
@@ -51,7 +51,7 @@ export default function ButtonAppBar() {
            
           >
               <Button className={classes.homeButton} variant='contained' onClick={(()=> history.push('/'))}> Home </Button>
-              <MenuItem onClick={()=> history.push('/missing')}>View Missing</MenuItem>
+              <MenuItem onClick={()=> history.push('/map')}>View Map</MenuItem>
           </IconButton>
           {currentUserId ? <Button variant="contained" color="secondary" onClick={toggle}>
             <Typography variant="h8" className={classes.title}>
@@ -63,7 +63,7 @@ export default function ButtonAppBar() {
           
           
           <FormModal isShowing={isShowing} hide={toggle} />
-          {currentUserId ? <LogoutButton /> : <Button className={classes.homeButton} variant='contained' onClick={(()=> history.push('/login'))}> Log In </Button>}
+          {currentUserId ? <LogoutButton /> : null}
           
         </Toolbar>
       </AppBar>

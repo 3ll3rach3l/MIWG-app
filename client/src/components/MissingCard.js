@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '10px',
       paddingLeft: '40px',
       paddingRight: '40px'
+  },
+  cardHeader:{
+      color: 'red'
   }
 }));
 
@@ -92,14 +95,15 @@ export default function MissingCard() {
             <Grid item xs={12} sm={6} md={4}>
 
                 <Card key={person.id} className={classes.root}> 
-                    <CardHeader
-                        avatar={
-                        <Avatar className={classes.avatar}>
-                            M
-                        </Avatar>}
+                    <CardHeader className={classes.cardHeader}
+                        // avatar={
+                            
+                        // <Avatar className={classes.avatar}>
+                        //     M
+                        // </Avatar>}
                          action={
                         <IconButton aria-label="settings">
-                          <MoreVertIcon onClick={viewOneMissing} />
+                          <MoreVertIcon onClick={() => viewOneMissing(i)} />
                         </IconButton>
                         }
                         title={person.fullName}
@@ -111,7 +115,7 @@ export default function MissingCard() {
                     title="Recent Photo"
                     />
                      <CardActions disableSpacing>
-                    <Typography paragraph>More Info:</Typography>
+                    <Typography paragraph >More Info:</Typography>
                     <IconButton
                         // className={clsx(classes.expand, {
                         //     [classes.expandOpen]: expanded,
@@ -125,11 +129,15 @@ export default function MissingCard() {
                     </CardActions>
                      <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
                      <CardContent>
-                         <Typography paragraph>Age: {person.age} </Typography>
-                         <Typography paragraph>Tribal Afilliiation: {person.tribalAffiliation} </Typography>
-                        <Typography paragraph>Date Last Seen: {person.dateLastSeen}</Typography>
-                        <Typography paragraph>City Last Seen: {person.location}</Typography>
-                         <Typography paragraph> Details:</Typography>
+                         <Typography variant={'h6'}>Age: </Typography>
+                         <Typography paragraph>{person.age} </Typography>
+                         <Typography variant={'h6'}>Tribal Afilliiation: </Typography>
+                        <Typography paragraph>{person.tribalAffiliation} </Typography>
+                        <Typography variant={'h6'}>Date Last Seen: </Typography>
+                         <Typography paragraph>{person.dateLastSeen}</Typography>
+                        <Typography variant={'h6'}>City Last Seen: </Typography>
+                        <Typography paragraph>{person.location}</Typography>
+                         <Typography variant={'h6'}> Details:</Typography>
                          <Typography paragraph>{person.details}</Typography>
                      </CardContent>
                       </Collapse>

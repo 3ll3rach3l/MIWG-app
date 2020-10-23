@@ -5,7 +5,7 @@ import { fetchMissing } from '../store/actions/missing';
 
 
 import MissingCard from '../components/MissingCard';
-import NavBar from '../components/NavBar'
+import MissingNav from '../components/MissingNav'
 
 import './missingAll.css'
 
@@ -25,7 +25,7 @@ export default function MissingAll(){
 
     return(
         <div className='cardContainer'>
-           <NavBar />
+           <MissingNav />
            <div className='spacer'/>
             <MissingCard />
         </div>
