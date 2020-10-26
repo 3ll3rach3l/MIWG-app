@@ -19,10 +19,10 @@ const statusItems = [
     {id: 'deceased', title: 'Deceased'},
 ]
 
-export default function EditMissingForm(){
+export default function EditMissingForm({person}){
   const userId = useSelector(state => state.auth.id);
-  const missing = useSelector(state => state.missingReducer.missing)
-  console.log('this is one missing', missing)
+  // const person = useSelector(state => state.missingReducer.oneMissing)
+  
   const [card, setCard] = React.useState([]);
   const [fullName, setFullName] = useState(null);
   const [age, setAge] = useState(null);
@@ -34,14 +34,14 @@ export default function EditMissingForm(){
   
   const dispatch = useDispatch()
   
-  useEffect(() => {
-        async function viewOneMissing() {
-            const missingObj = await dispatch(fetchOneMissing())
-            console.log('this is inside the missingObj', missingObj.missings)
-            await setCard(missingObj.missings)
-        }
-        viewOneMissing()
-    }, [dispatch]);
+  // useEffect(() => {
+  //       async function viewOneMissing() {
+  //           const missingObj = await dispatch(fetchOneMissing())
+  //           console.log('this is inside the missingObj', missingObj.missings)
+  //           await setCard(missingObj.missings)
+  //       }
+  //       viewOneMissing()
+  //   }, [dispatch]);
   
 
   const extractCoord = async () => {
@@ -81,12 +81,12 @@ export default function EditMissingForm(){
       }
   }
  
- 
+    console.log(person)
 
     return (
       <Form onSubmit={handleUpdateMissing}>
-        <Grid container>
-          {missing.map((person) =>(
+        {/* <Grid container>
+          {missing.map((person) =>( */}
             <div key={person.id}>
             <Grid item xs={6}>
             <Controls.Input 
@@ -143,9 +143,9 @@ export default function EditMissingForm(){
           </div>
 
 
-          ))}
+          {/* ))}
           
-        </Grid>
+        </Grid> */}
       </Form>
     );
 }

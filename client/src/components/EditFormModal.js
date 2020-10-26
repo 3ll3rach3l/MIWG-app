@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //Portals allow React components to render in another part of the DOM that is outside of their parent component.
-const EditFormModal = ({isShowing, hide}) => {
+const EditFormModal = ({isShowing, hide, person}) => {
 
   const classes = useStyles()
 
   return (
-    <div className="modal">
+    <div className="edit-modal">
       {isShowing
         ? ReactDOM.createPortal(
             <>
@@ -35,7 +35,7 @@ const EditFormModal = ({isShowing, hide}) => {
               >
                 <div className="modal">
                   <Paper className={classes.pageContent}>
-                    <EditMissingForm />
+                    <EditMissingForm person={person}/>
                      <div className="modal-header">
                     <button
                       type="button"
