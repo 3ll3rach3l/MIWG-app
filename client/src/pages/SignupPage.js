@@ -73,7 +73,7 @@ export default function SignupPage() {
     dispatch(signup(username, email, password));
   };
 
-  if (currentUserId) return <Redirect to="/" />;
+  if (currentUserId) return <Redirect to="/map" />;
 
   return (
     <div className='pageWrapper'>

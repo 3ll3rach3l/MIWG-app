@@ -63,7 +63,7 @@ export default function MissingNav() {
           
           
           <FormModal isShowing={isShowing} hide={toggle} />
-          {currentUserId ? <LogoutButton /> : null}
+          {currentUserId ? <LogoutButton /> : <Button className={classes.homeButton} variant='contained' onClick={(()=> history.push('/login'))}> Log In </Button>}
           
         </Toolbar>
       </AppBar>
