@@ -86,7 +86,7 @@ export default function LoginPage() {
     
   }
 
-  if (currentUserId) return <Redirect to="/" />;
+  if (currentUserId) return <Redirect to="/map" />;
 
   return (
     <div className='pageWrapper'>
