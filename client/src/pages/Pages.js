@@ -7,6 +7,7 @@ import SignupPage from './SignupPage'
 import HomePage from './HomePage'
 import MapPage from './MapPage'
 import MissingAll from './MissingAllPage'
+import LogoutPage from './LogoutPage';
 
 
 
@@ -14,6 +15,7 @@ export default function Pages() {
     return (
       <Router history={history}>
         <Switch>
+          <Route path="/logout" component={LogoutPage} />
           <Route path="/missing" component={MissingAll} />
           <Route path="/map" component={MapPage} />
           <Route path="/signup" component={SignupPage} />

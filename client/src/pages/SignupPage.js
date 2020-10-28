@@ -15,6 +15,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Paper } from "@material-ui/core";
+import { red } from '@material-ui/core/colors';
+
+
+import '../index.css'
 
 function Copyright() {
   return (
@@ -50,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+
+  copyright:{
+    color: red[500]
+  }
 }));
 
 export default function SignupPage() {
@@ -65,9 +73,10 @@ export default function SignupPage() {
     dispatch(signup(username, email, password));
   };
 
-  if (currentUserId) return <Redirect to="/" />;
+  if (currentUserId) return <Redirect to="/map" />;
 
   return (
+    <div className='pageWrapper'>
       <Container component='main' maxWidth='xs'>
          
         <Paper className={classes.paper}>
@@ -134,9 +143,12 @@ export default function SignupPage() {
         </form>
         </Paper>
         <Box mt={8}>
-          <Copyright />
+          <Copyright className={classes.copyright}/>
         </Box>
       </Container>
+
+
+    </div>
    
   );
 }

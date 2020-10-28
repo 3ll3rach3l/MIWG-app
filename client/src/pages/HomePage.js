@@ -19,9 +19,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(5),
-    width: '80%',
+    width: '60%',
+    height: '100%',
     color: 'red',
-    opacity: .8
+    opacity: .9,
+    marginLeft: theme.spacing(30),
+    
     
   },
 
@@ -37,17 +40,20 @@ export default function HomePage() {
     
     const classes = useStyles();
     // console.log("this is isLoggedIn", isLoggedIn)
-    if (!isLoggedIn) return <Redirect to='/login'></Redirect>
+    // if (!isLoggedIn) return <Redirect to='/login'></Redirect>
 
     return (
         <>
-        <div>
+        <div className='pageWrapper'>
             <Container component="main" maxWidth="xs " elevation={3}>
             <Paper className={classes.paper}> 
-                <Typography variant="h4">In various tribes, red is known to be the only color spirits see.
+                <Typography variant="h5">In various tribes, red is known to be the only color spirits see.
                 It is hoped that by wearing red, we can call back the missing spirits
                 of our women and children so we can lay them to rest...
                 </Typography>
+                <div className='imageContainer'>
+                  <img src={'./homepage.JPG'} alt='Natives Mask Up'/>
+                </div>
                 <div className='buttonContainer'> 
                      <Controls.Button 
                      type="submit" 
