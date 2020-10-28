@@ -33,7 +33,7 @@ function LogoutButton() {
     //debugger
     if (res.ok){
       Cookies.remove("token");
-      history.push('/login')
+      history.push('/logout')
       
     } 
 

@@ -5,3 +5,22 @@
     border: none;
 }
 
+.pageWrapper {
+    background-color:  #000000;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vw;
+    width: 100vw;
+  }
+
+  .imageContainer{
+     width: 400px;
+     height: 500px;
+     padding: 10px;
+  }
+
+  .imageContainer img{
+      width: 100%;
+      height: auto;
+  }
