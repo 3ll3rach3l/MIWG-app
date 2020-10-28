@@ -30,9 +30,7 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: 'black'
-  },
+ 
   paper: {
     margin: theme.spacing(5),
     display: 'flex',

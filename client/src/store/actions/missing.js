@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 export const GET_MISSING = 'GET_MISSING';
 export const GET_ONE_MISSING = 'GET_ONE_MISSING';
 export const POST_MISSING = 'POST_MISSING';
+export const UPDATE_MISSING = 'UPDATE_MISSING';
 
 ///////////////ACTIONS//////////////////
 
@@ -13,16 +14,23 @@ export const getMissing = (missing) =>{
     }
 }
 
-export const getOneMissing = (oneMissing) => {
+export const getOneMissing = (missing) => {
     return {
         type: GET_ONE_MISSING,
-        oneMissing
+        missing
     }
 }
 
 export const postMissing = (missing) => {
     return {
         type: POST_MISSING,
+        missing
+    }
+}
+
+export const updateMissing = (missing) =>{
+    return{
+        type: UPDATE_MISSING,
         missing
     }
 }
@@ -61,8 +69,8 @@ export const newMissing = (
     lng, 
     
     ) => {
-    const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
-    console.log("this is the body", body);
+    // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+    // console.log("this is the body", body);
     return async dispatch => {
         console.log('hello')
         const res = await fetch('/api/missing/new', {
@@ -96,5 +104,48 @@ export const newMissing = (
             dispatch(postMissing(res.data.newMissing))
         } 
         // return res;
+    }
+}
+
+export const modifyMissing = (
+    id,
+    fullName, 
+    age, 
+    tribalAffiliation, 
+    location, 
+    dateLastSeen, 
+    details, 
+    status, 
+    userId,
+    lat, 
+    lng, 
+) => {
+     const body = { id, fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+    console.log("this is the body", body);
+    return async dispatch => {
+        const res = await fetch('/api/missing/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id,
+                fullName, 
+                age, 
+                tribalAffiliation, 
+                location, 
+                dateLastSeen, 
+                details, 
+                status, 
+                userId,
+                lat, 
+                lng, 
+            })
+        });
+        res.data = await res.json()
+        if(res.ok){
+            dispatch(updateMissing(res.data.missings))
+        }
+        return res;
     }
 }
