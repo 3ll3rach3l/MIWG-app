@@ -30,19 +30,11 @@ export default function EditMissingForm({person}){
   const [location, setLocation] = useState(null);
   const [dateLastSeen, setDateLastSeen] = useState(null);
   const [details, setDetails] = useState(null);
-  const [status, setStatus] = useState('missing')
+  const [status, setStatus] = useState(null)
   
   const dispatch = useDispatch()
   
-  // useEffect(() => {
-  //       async function viewOneMissing() {
-  //           const missingObj = await dispatch(fetchOneMissing())
-  //           console.log('this is inside the missingObj', missingObj.missings)
-  //           await setCard(missingObj.missings)
-  //       }
-  //       viewOneMissing()
-  //   }, [dispatch]);
-  
+
 
   const extractCoord = async () => {
       let address = location;
@@ -62,12 +54,14 @@ export default function EditMissingForm({person}){
     };
   } 
 
-  const handleUpdateMissing = () =>{
+  const handleUpdateMissing = (e) =>{
+    e.preventDefault()
       if (location) {
           extractCoord()
       } else{
           dispatch(
               modifyMissing(
+                  
                   fullName, 
                   age, 
                   tribalAffiliation, 
@@ -81,34 +75,33 @@ export default function EditMissingForm({person}){
       }
   }
  
-    console.log(person)
+    console.log('person', person)
+    console.log('fullName', fullName)
 
     return (
       <Form onSubmit={handleUpdateMissing}>
-        {/* <Grid container>
-          {missing.map((person) =>( */}
             <div key={person.id}>
             <Grid item xs={6}>
             <Controls.Input 
-              disabled
+              disabled={true}
               label="Full Name"
               value={person.fullName}
             />
             <Controls.Input
-              label="Update Age"
-              value={person.age}
+              label={`Update Age`}
+              // value={person.age}
               name="age"
               onChange={e => setAge(e.target.value)}
             />
             <Controls.Input
-              disabled
+              disabled={true}
               label="Tribal Affiliation"
               name="tribalAffiliation"
               value={person.tribalAffiliation}
             />
             <Controls.Input 
               label="Update City Last Seen"
-              value={person.location}
+              // value={person.location}
               name="location"
               onChange={e => setLocation(e.target.value)}
             
@@ -118,7 +111,7 @@ export default function EditMissingForm({person}){
             <Controls.DatePicker
                 name="dateLastSeen"
                 label="Update Date Last Seen"
-                value={person.dateLastSeen}
+                // value={person.dateLastSeen}
                 onChange={e => setDateLastSeen(e.target.value)}
             />
             <Controls.Details 
@@ -130,7 +123,7 @@ export default function EditMissingForm({person}){
             <Controls.RadioGroup
               name="status"
               label="Update Status"
-              value={person.status}
+              // value={person.status}
               onChange={e => setStatus(e.target.value)}
               items={statusItems}
             />
@@ -141,11 +134,6 @@ export default function EditMissingForm({person}){
             </div>
           </Grid>
           </div>
-
-
-          {/* ))}
-          
-        </Grid> */}
       </Form>
     );
 }
