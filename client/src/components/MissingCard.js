@@ -19,6 +19,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 200,
+       
+        
     },
     background:{
         default: 'black'
@@ -45,10 +47,11 @@ const useStyles = makeStyles((theme) => ({
     pos: {
         marginBotton: 12
     },
-     gridContainer: {
+    gridContainer: {
       paddingTop: '10px',
       paddingLeft: '40px',
-      paddingRight: '40px'
+      paddingRight: '40px',
+      
   },
   cardHeader:{
       color: 'red'
@@ -66,19 +69,21 @@ export default function MissingCard({person, i}) {
         setExpandedId(expandedId === i ? -1 : i)
     };
    
-    const handleToggle = ({id}) =>{
-       setToggleId(id)
-       toggle()
-       console.log(toggleId)
+    // const handleToggle = ({id}) =>{
+    //    setToggleId(id)
+    //    toggle()
+    //    console.log(toggleId)
 
-    }
+    // }
 
   
 
     return (
         
-        <Grid spacing={4} className={classes.gridContainer} justify='center'>
-   
+        
+           
+    
+       <Grid spacing={4} className={classes.gridContainer} justify='center' direction="row">
             <Card key={person.id} className={classes.root}> 
                 <CardHeader className={classes.cardHeader}
                     // avatar={
@@ -131,10 +136,12 @@ export default function MissingCard({person, i}) {
             
         
             <EditFormModal hide={toggle} person={person} isShowing={isShowing}/>
-        </Grid>
-       
+       </Grid>     
+        
+      
    
-   
+  
+
     ) 
 
 }
