@@ -68,7 +68,6 @@ def add_missing():
 
 @missing_routes.route('/update', methods=['PUT'])
 def update_missing():
-    
     missingId = request.json.get('id')
     missing = Missing.query.filter(Missing.id == missingId).first()
     new_name = request.json.get('fullName')

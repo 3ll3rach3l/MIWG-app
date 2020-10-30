@@ -62,7 +62,7 @@ export default function MissingCard({person, i}) {
     const classes = useStyles();
     const { isShowing, toggle } = useModal();
     const [toggleId, setToggleId] = React.useState(null) 
-    const [profileId, setProfileId] = React.useState(null)  
+    const [profileId, setProfileId] = React.useState(0)  
     const [expandedId, setExpandedId] = React.useState(-1);
 
     const handleExpandClick = (i) => {
@@ -70,9 +70,9 @@ export default function MissingCard({person, i}) {
     };
    
     // const handleToggle = ({id}) =>{
-    //    setToggleId(id)
+    //    setProfileId(id)
     //    toggle()
-    //    console.log(toggleId)
+    //    console.log('profilId', profileId)
 
     // }
 
@@ -83,8 +83,8 @@ export default function MissingCard({person, i}) {
         
            
     
-       <Grid spacing={4} className={classes.gridContainer} justify='center' direction="row">
-            <Card key={person.id} className={classes.root}> 
+       <>
+            <Card className={classes.root}> 
                 <CardHeader className={classes.cardHeader}
                     // avatar={
                         
@@ -136,7 +136,7 @@ export default function MissingCard({person, i}) {
             
         
             <EditFormModal hide={toggle} person={person} isShowing={isShowing}/>
-       </Grid>     
+        </>   
         
       
    

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const EditFormModal = ({isShowing, hide, person}) => {
 
   const classes = useStyles()
-
+  
   return (
     <div className="edit-modal">
       {isShowing

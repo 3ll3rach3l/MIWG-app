@@ -57,28 +57,29 @@ export default function EditMissingForm({person}){
   const handleUpdateMissing = (e) =>{
     e.preventDefault()
       if (location) {
+        console.log('new location', location)
           extractCoord()
       } else{
           dispatch(
-              modifyMissing(
-                  
-                  fullName, 
+              modifyMissing( 
                   age, 
-                  tribalAffiliation, 
                   dateLastSeen, 
                   details, 
                   status, 
                   userId, 
               )
           )
+
+          console.log('body', fullName, age, tribalAffiliation, dateLastSeen, details, status, userId)
           return history.push(`/missing`)
       }
   }
  
     console.log('person', person)
-    console.log('fullName', fullName)
+    
 
     return (
+
       <Form onSubmit={handleUpdateMissing}>
             <div key={person.id}>
             <Grid item xs={6}>
@@ -135,5 +136,6 @@ export default function EditMissingForm({person}){
           </Grid>
           </div>
       </Form>
+      
     );
 }

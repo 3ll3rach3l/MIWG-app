@@ -16,9 +16,7 @@ import './missingAll.css'
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 200,
-        paddingTop: '10px',
-        paddingLeft: '40px',
-        paddingRight: '40px'
+       
         
         
     },
@@ -85,16 +83,20 @@ export default function MissingAll(){
             <MissingNav />
             <div className='spacer'/>
         
-            
-            <Grid item xs={12} sm={8} md={6}>
-            {missing.map((person, i) => (
-                <MissingCard person={person} idx={i} />
-                
-                
-                ))}
+            <Grid container  >
+                <Grid item xs={10} m={6} s={4}>
+                    <Grid container className={classes.gridContainer} justify='center' spacing={2}>
+                    {missing.map((person, i) => (
+                        <Grid key={person.id} item>
+                        <MissingCard person={person} idx={i} />
+                        </Grid>
+                        
+                        ))}
+
+                </Grid>
             
             </Grid>
-        
+            </Grid>     
         </div>
     )
 }
