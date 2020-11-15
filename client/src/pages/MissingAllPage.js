@@ -84,8 +84,8 @@ export default function MissingAll(){
             <div className='spacer'/>
         
             <Grid container  >
-                <Grid item xs={10} m={6} s={4}>
-                    <Grid container className={classes.gridContainer} justify='center' spacing={2}>
+                <Grid item xs={12} m={6} s={4}>
+                    <Grid container className={classes.gridContainer} justify='center' spacing={4}>
                     {missing.map((person, i) => (
                         <Grid key={person.id} item>
                         <MissingCard person={person} idx={i} />

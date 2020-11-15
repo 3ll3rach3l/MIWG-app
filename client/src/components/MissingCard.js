@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import history from '../store/history'
+import React from 'react';
+
 
 import useModal from "../components/useModal";
 import EditFormModal from "../components/EditFormModal"
@@ -19,8 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 200,
-       
-        
+  
     },
     background:{
         default: 'black'
