@@ -48,6 +48,8 @@ export default function HomePage() {
         <div className='pageWrapper'>
             <Container component="main" maxWidth="xs " elevation={3}>
             <Paper className={classes.paper}> 
+                <Typography variant='h4' align='center'>Missing Indigenous Women & Girls</Typography>
+                <br/>
                 <Typography variant="h5">In various tribes, red is known to be the only color spirits see.
                 It is hoped that by wearing red, we can call back the missing spirits
                 of our women and children so we can lay them to rest...

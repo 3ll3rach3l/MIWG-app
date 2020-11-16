@@ -38,13 +38,23 @@ export default function EditMissingForm({person}){
 
   const extractCoord = async () => {
       let address = location;
+      console.log('this is address', address)
     try{
       const results = await getGeocode({ address });
       console.log('this is results in extract coord edit missing form', results)
       const { lat, lng } = await getLatLng(results[0]);
       console.log('these are coords in edit missing form', {lat, lng})
       dispatch(
-        modifyMissing(fullName, age, tribalAffiliation, address, dateLastSeen, details, status, userId, lat, lng)
+        modifyMissing( age,
+    dateLastSeen, 
+    details, 
+    fullName, 
+    lat, 
+    lng, 
+    location, 
+    status,
+    tribalAffiliation, 
+    userId, )
       )
       // console.log('values and coords', values, lat, lng)
      
@@ -57,28 +67,38 @@ export default function EditMissingForm({person}){
   const handleUpdateMissing = (e) =>{
     e.preventDefault()
       if (location) {
+        console.log('new location', location)
           extractCoord()
       } else{
           dispatch(
-              modifyMissing(
-                  
-                  fullName, 
-                  age, 
-                  tribalAffiliation, 
-                  dateLastSeen, 
-                  details, 
-                  status, 
-                  userId, 
+              modifyMissing( 
+                   age,
+    dateLastSeen, 
+    details, 
+    fullName, 
+    status,
+    tribalAffiliation, 
+    userId, 
               )
           )
+
+          console.log('body',  age,
+    dateLastSeen, 
+    details, 
+    fullName, 
+    location, 
+    status,
+    tribalAffiliation, 
+    userId, )
           return history.push(`/missing`)
       }
   }
  
     console.log('person', person)
-    console.log('fullName', fullName)
+    
 
     return (
+
       <Form onSubmit={handleUpdateMissing}>
             <div key={person.id}>
             <Grid item xs={6}>
@@ -87,23 +107,25 @@ export default function EditMissingForm({person}){
               label="Full Name"
               value={person.fullName}
             />
+              <Controls.Input
+                disabled={true}
+                label="Tribal Affiliation"
+                name="tribalAffiliation"
+                value={person.tribalAffiliation}
+              />
             <Controls.Input
               label={`Update Age`}
               // value={person.age}
               name="age"
               onChange={e => setAge(e.target.value)}
-            />
-            <Controls.Input
-              disabled={true}
-              label="Tribal Affiliation"
-              name="tribalAffiliation"
-              value={person.tribalAffiliation}
+              
             />
             <Controls.Input 
-              label="Update City Last Seen"
+              label="Update City Seen"
               // value={person.location}
               name="location"
               onChange={e => setLocation(e.target.value)}
+             
             
             />
           </Grid>
@@ -113,12 +135,14 @@ export default function EditMissingForm({person}){
                 label="Update Date Last Seen"
                 // value={person.dateLastSeen}
                 onChange={e => setDateLastSeen(e.target.value)}
+                
             />
             <Controls.Details 
               name="details"
               label="Add Additional Details"
-              value={person.details}
+              // value={person.details}
               onChange={e => setDetails(e.target.value)}
+             
             />
             <Controls.RadioGroup
               name="status"
@@ -126,6 +150,7 @@ export default function EditMissingForm({person}){
               // value={person.status}
               onChange={e => setStatus(e.target.value)}
               items={statusItems}
+
             />
 
             <div>
@@ -135,5 +160,6 @@ export default function EditMissingForm({person}){
           </Grid>
           </div>
       </Form>
+      
     );
 }

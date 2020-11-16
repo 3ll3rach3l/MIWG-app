@@ -72,7 +72,7 @@ export const newMissing = (
     // const body = { fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
     // console.log("this is the body", body);
     return async dispatch => {
-        console.log('hello')
+        
         const res = await fetch('/api/missing/new', {
             method: "post",
             headers: {
@@ -108,19 +108,29 @@ export const newMissing = (
 }
 
 export const modifyMissing = (
-    id,
-    fullName, 
-    age, 
-    tribalAffiliation, 
-    location, 
+    age,
     dateLastSeen, 
     details, 
-    status, 
-    userId,
+    fullName, 
+    id, 
     lat, 
     lng, 
+    location, 
+    status,
+    tribalAffiliation, 
+    userId, 
 ) => {
-     const body = { id, fullName, age, tribalAffiliation, location, dateLastSeen, details, status, userId, lat, lng };
+     const body = { age,
+    dateLastSeen, 
+    details, 
+    fullName, 
+    id, 
+    lat, 
+    lng, 
+    location, 
+    status,
+    tribalAffiliation, 
+    userId, };
     console.log("this is the body", body);
     return async dispatch => {
         const res = await fetch('/api/missing/update', {
@@ -129,23 +139,23 @@ export const modifyMissing = (
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id,
-                fullName, 
-                age, 
-                tribalAffiliation, 
-                location, 
-                dateLastSeen, 
-                details, 
-                status, 
-                userId,
-                lat, 
-                lng, 
+               age,
+    dateLastSeen, 
+    details, 
+    fullName, 
+    id, 
+    lat, 
+    lng, 
+    location, 
+    status,
+    tribalAffiliation, 
+    userId, 
             })
         });
         res.data = await res.json()
         if(res.ok){
             dispatch(updateMissing(res.data.missings))
         }
-        return res;
+        // return res;
     }
 }

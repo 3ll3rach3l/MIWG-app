@@ -92,8 +92,8 @@ export default function MissingForm(){
       if (validate()){
         extractCoord()
         resetForm()
-        alert('Submitted')
       }
+      return history.push('/map')
   }
   // if (!userId) return null
     return (

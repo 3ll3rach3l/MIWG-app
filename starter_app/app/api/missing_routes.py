@@ -25,9 +25,7 @@ def one_missing():
 
 @missing_routes.route('/new', methods=['POST'])
 def add_missing():
-    data = request.json
-    print("this is data in routes", data)
-
+   
     fullName = request.json.get('fullName')
     age = request.json.get('age')
     tribalAffiliation = request.json.get('tribalAffiliation')
@@ -39,8 +37,8 @@ def add_missing():
     status = request.json.get('status')
     userId = request.json.get('userId')
 
-    print("this is age", age)
-    print("this is userId", userId)
+    # print("this is age", age)
+    # print("this is userId", userId)
 
 
     newMissing = Missing(
@@ -55,25 +53,22 @@ def add_missing():
         status=status,
         userId=userId
     )
-    print("newMissing", newMissing)
-    print("age", age)
+    # print("newMissing", newMissing)
+    # print("age", age)
 
     db.session.add(newMissing)
     db.session.commit()
 
     missing1 = newMissing.to_dict()
-    print("this is missing1", missing1)
+    # print("this is missing1", missing1)
 
     return jsonify(newMissing=missing1), 200
 
-@missing_routes.route('/update', methods=['PUT'])
+@missing_routes.route('/update', methods=['PATCH'])
 def update_missing():
-    
     missingId = request.json.get('id')
     missing = Missing.query.filter(Missing.id == missingId).first()
-    new_name = request.json.get('fullName')
     new_age = request.json.get('age')
-    new_affiliation = request.json.get('tribalAffiliation')
     new_location = request.json.get('location')
     new_dateLastSeen = request.json.get('dateLastSeen')
     new_details = request.json.get('details')
@@ -81,12 +76,9 @@ def update_missing():
     new_lat = request.json.get('lat')
     new_lng = request.json.get('lng')
 
-    if new_name:
-        missing.fullName = new_name
+
     if new_age:
         missing.age = new_age
-    if new_affiliation:
-        missing.tribalAffiliation = new_affiliation
     if new_dateLastSeen:
         missing.dateLastSeen = new_dateLastSeen
     if new_details:

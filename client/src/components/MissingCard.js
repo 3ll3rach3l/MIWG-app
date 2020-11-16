@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import history from '../store/history'
+import React from 'react';
+
 
 import useModal from "../components/useModal";
 import EditFormModal from "../components/EditFormModal"
@@ -19,8 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 200,
-       
-        
+  
     },
     background:{
         default: 'black'
@@ -62,7 +60,7 @@ export default function MissingCard({person, i}) {
     const classes = useStyles();
     const { isShowing, toggle } = useModal();
     const [toggleId, setToggleId] = React.useState(null) 
-    const [profileId, setProfileId] = React.useState(null)  
+    const [profileId, setProfileId] = React.useState(0)  
     const [expandedId, setExpandedId] = React.useState(-1);
 
     const handleExpandClick = (i) => {
@@ -70,9 +68,9 @@ export default function MissingCard({person, i}) {
     };
    
     // const handleToggle = ({id}) =>{
-    //    setToggleId(id)
+    //    setProfileId(id)
     //    toggle()
-    //    console.log(toggleId)
+    //    console.log('profilId', profileId)
 
     // }
 
@@ -83,8 +81,8 @@ export default function MissingCard({person, i}) {
         
            
     
-       <Grid spacing={4} className={classes.gridContainer} justify='center' direction="row">
-            <Card key={person.id} className={classes.root}> 
+       <>
+            <Card className={classes.root}> 
                 <CardHeader className={classes.cardHeader}
                     // avatar={
                         
@@ -136,7 +134,7 @@ export default function MissingCard({person, i}) {
             
         
             <EditFormModal hide={toggle} person={person} isShowing={isShowing}/>
-       </Grid>     
+        </>   
         
       
    

@@ -128,12 +128,13 @@ export default function MapPage(){
           >
             <div>
               <h2>{selected.fullName}</h2>
-              <h2>{selected.status}</h2>
+              <h3>Status: {selected.status}</h3>
               <h3>
                 Tribal Affiliation: {selected.tribalAffiliation}
               </h3>
-              <h3>Last Seen: {selected.dateLastSeen}</h3>
-              <h4>Details: {selected.details}</h4>
+        <h3>Last Seen in {selected.location} <br/> on {selected.dateLastSeen}
+        </h3>
+              <h3>Details: {selected.details}</h3>
             </div>
           </InfoWindow>
         ) : null}
