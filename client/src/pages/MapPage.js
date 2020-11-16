@@ -110,7 +110,7 @@ export default function MapPage(){
               key={location.location}
               position={{ lat: location.lat, lng: location.lng }}
               icon={{
-                url: '/red-hand.svg',
+                url: 'https://www.clker.com/cliparts/x/E/P/8/W/Y/red-hand-print-th.png',
                 scaledSize: new window.google.maps.Size(50, 50),
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(25, 25),

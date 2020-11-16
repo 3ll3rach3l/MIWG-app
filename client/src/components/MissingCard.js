@@ -25,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
 
     },
     media: {
-        height: 0,
+        height: 140,
         paddingTop: '56.25%', // 16:9
+        
+    
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -97,11 +99,14 @@ export default function MissingCard({person, i}) {
                     title={person.fullName}
                     subheader={person.status}
                 />
-                <CardMedia
+                {/* <CardMedia
                 className={classes.media}
-                image="/MMIW-BLOG.png"
+                square
+                image="https://imgur.com/SRcjQHa"
                 title="Recent Photo"
-                />
+                /> */}
+                <img src="https://i.imgur.com/SRcjQHa.png" title="source: imgur.com" height='200' width='250'/>
+                
                  <CardActions disableSpacing>
                 <Typography paragraph >More Info:</Typography>
                 <IconButton

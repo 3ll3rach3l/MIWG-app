@@ -8,7 +8,7 @@ export default function LogoutPage(){
     return (
 
         <div className='pageWrapper'>
-            <img src={'./logout.jpg'} className='hands' alt='You Are Not Forgotten'/>
+        <img src="https://i.imgur.com/TOe0wyh.jpg?1" title="source: imgur.com" className="hands"/>
             <div className='linkContainer'>
                 <Link href="/" color='secondary' variant="body2">
                     {"Return to Home"}

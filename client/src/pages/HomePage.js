@@ -55,7 +55,7 @@ export default function HomePage() {
                 of our women and children so we can lay them to rest...
                 </Typography>
                 <div className='imageContainer'>
-                  <img src="https://imgur.com/E6eNUPK"alt='Natives Mask Up'/>
+                  <img src="https://i.imgur.com/E6eNUPK.jpg?1" title="source: imgur.com" />
                 </div>
                 <div className='buttonContainer'> 
                      <Controls.Button 
